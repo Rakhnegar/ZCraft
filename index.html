@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سرور ماینکرفت زد کرفت | ZCraft</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #f72585;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #0f172a;
+            --text: #e2e8f0;
+            --minecraft-green: #4cc9f0;
+            --minecraft-blue: #3f37c9;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --section-padding: 80px 20px;
+            --glass-bg: rgba(15, 23, 42, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Samim', sans-serif;
+        }
+        
+        body {
+            background: var(--dark);
+            color: var(--text);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            background-image: url('https://images.unsplash.com/photo-1633186710893-9f7c1c7b7e1d?ixlib=rb-4.0.3');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.95));
+            z-index: -1;
+        }
+        
+        /* Minecraft Custom Icons */
+        .minecraft-icon {
+            position: fixed;
+            z-index: -1;
+            animation: floatMinecraft 8s infinite ease-in-out;
+            filter: drop-shadow(0 0 10px rgba(76, 201, 240, 0.7));
+            opacity: 0.3;
+            user-select: none;
+            pointer-events: none;
+        }
+        
+        .diamond {
+            width: 50px;
+            height: 50px;
+            background: 
+                linear-gradient(135deg, #4cc9f0, #2a8eb0);
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+        }
+        
+        .pickaxe {
+            width: 60px;
+            height: 60px;
+            background: 
+                linear-gradient(135deg, #a0a0a0, #707070);
+            position: relative;
+        }
+        
+        .pickaxe::before {
+            content: '';
+            position: absolute;
+            width: 70%;
+            height: 30%;
+            background: 
+                linear-gradient(135deg, #d0d0d0, #a0a0a0);
+            top: 35%;
+            left: 15%;
+        }
+        
+        .pickaxe::after {
+            content: '';
+            position: absolute;
+            width: 30%;
+            height: 70%;
+            background: 
+                linear-gradient(135deg, #606060, #404040);
+            top: 15%;
+            left: 35%;
+        }
+        
+        .creeper {
+            width: 50px;
+            height: 50px;
+            background: 
+                linear-gradient(135deg, #1a936f, #0d5c48);
+            position: relative;
+            border-radius: 5px;
+        }
+        
+        .creeper::before, .creeper::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: black;
+            border-radius: 2px;
+        }
+        
+        .creeper::before {
+            top: 15px;
+            left: 10px;
+        }
+        
+        .creeper::after {
+            top: 15px;
+            right: 10px;
+        }
+        
+        .grass {
+            width: 60px;
+            height: 60px;
+            background: 
+                linear-gradient(135deg, #7cfc00, #5cb300);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .grass::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background: 
+                linear-gradient(135deg, #5cb300, #4a8f00);
+            bottom: 0;
+        }
+        
+        .grass::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 10px;
+            background: 
+                linear-gradient(135deg, #4a8f00, #3a6d00);
+            bottom: 0;
+        }
+        
+        .sword {
+            width: 60px;
+            height: 60px;
+            position: relative;
+        }
+        
+        .sword::before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 60px;
+            background: 
+                linear-gradient(135deg, #c0c0c0, #909090);
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+        }
+        
+        .sword::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: 
+                linear-gradient(135deg, #e0e0e0, #a0a0a0);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 0 2rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            border-bottom: 2px solid var(--accent);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 0 20px rgba(67, 97, 238, 0.5);
+            transform: rotate(45deg);
+            animation: pulse 3s infinite;
+        }
+        
+        .logo i {
+            transform: rotate(-45deg);
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent);
+            transition: width 0.3s;
+            border-radius: 10px;
+        }
+        
+        .nav-link:hover:after, .nav-link.active:after {
+            width: 100%;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent);
+        }
+        
+        .server-ip {
+            background: rgba(67, 97, 238, 0.2);
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            border: 1px solid var(--accent);
+            color: var(--text);
+            font-weight: bold;
+            animation: glow 2s infinite alternate;
+        }
+        
+        .page {
+            min-height: 100vh;
+            padding: var(--section-padding);
+            padding-top: 100px;
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .hero {
+            padding: 2rem;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--primary), var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            animation: textGlow 3s infinite alternate;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+        
+        .hero-btns {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s;
+            border: none;
+            box-shadow: var(--card-shadow);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: -1;
+            transform: translateX(-100%);
+            transition: transform 0.4s;
+        }
+        
+        .btn:hover:before {
+            transform: translateX(0);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(67, 97, 238, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(15, 23, 42, 0.7);
+            color: var(--text);
+            border: 2px solid var(--accent);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(67, 97, 238, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .section-title:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .feature-card {
+            background: var(--glass-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+        
+        .feature-card:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            z-index: 2;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(67, 97, 238, 0.4);
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(73, 149, 239, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            color: var(--accent);
+            box-shadow: 0 0 20px rgba(67, 97, 238, 0.2);
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .feature-card p {
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+        
+        .ranks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .rank-card {
+            background: var(--glass-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            z-index: 1;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+        
+        .rank-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(67, 97, 238, 0.4);
+        }
+        
+        .rank-header {
+            padding: 1.5rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+        }
+        
+        .rank-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .rank-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        
+        .rank-body {
+            padding: 1.5rem;
+        }
+        
+        .rank-features {
+            list-style-type: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .rank-features li {
+            padding: 0.7rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.95rem;
+            color: #cbd5e1;
+        }
+        
+        .rank-features li i {
+            color: var(--accent);
+            min-width: 20px;
+        }
+        
+        .rank-btn {
+            display: block;
+            width: 100%;
+            padding: 0.9rem;
+            background: linear-gradient(135deg, var(--secondary), #e01e69);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(247, 37, 133, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .rank-btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: -1;
+            transform: translateX(-100%);
+            transition: transform 0.4s;
+        }
+        
+        .rank-btn:hover:before {
+            transform: translateX(0);
+        }
+        
+        .rank-btn:hover {
+            background: linear-gradient(135deg, #e01e69, var(--secondary));
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(247, 37, 133, 0.5);
+        }
+        
+        .jobs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .job-card {
+            background: var(--glass-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+        
+        .job-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            border-color: rgba(67, 97, 238, 0.4);
+        }
+        
+        .job-icon {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .job-icon:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        .job-police { background: linear-gradient(135deg, #4361ee, #3a0ca3); }
+        .job-fbi { background: linear-gradient(135deg, #f72585, #b5179e); }
+        .job-swat { background: linear-gradient(135deg, #4cc9f0, #4895ef); }
+        .job-miner { background: linear-gradient(135deg, #f8961e, #f3722c); }
+        .job-medic { background: linear-gradient(135deg, #2ec4b6, #1a936f); }
+        .job-hitman { background: linear-gradient(135deg, #6a4c93, #4a306d); }
+        
+        .job-content {
+            padding: 1.5rem;
+        }
+        
+        .job-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .job-description {
+            line-height: 1.7;
+            color: #cbd5e1;
+        }
+        
+        .job-description p {
+            margin-bottom: 0.7rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .job-description p:before {
+            content: '•';
+            margin-left: 0.5rem;
+            color: var(--accent);
+        }
+        
+        .login-form {
+            background: var(--glass-bg);
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(67, 97, 238, 0.3);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            color: white;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.3);
+        }
+        
+        .footer {
+            background: rgba(15, 23, 42, 0.9);
+            padding: 2rem;
+            border-top: 1px solid rgba(67, 97, 238, 0.2);
+            text-align: center;
+            margin-top: 4rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(67, 97, 238, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--text);
+            transition: all 0.4s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .social-icon:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+        }
+        
+        .copyright {
+            color: #94a3b8;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(67, 97, 238, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0); }
+        }
+        
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px rgba(67, 97, 238, 0.3); }
+            100% { box-shadow: 0 0 20px rgba(67, 97, 238, 0.5); }
+        }
+        
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 5px rgba(67, 97, 238, 0.3); }
+            100% { text-shadow: 0 0 20px rgba(67, 97, 238, 0.7); }
+        }
+        
+        @keyframes floatMinecraft {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                filter: drop-shadow(0 0 10px rgba(76, 201, 240, 0.7));
+            }
+            25% {
+                transform: translate(20px, -30px) rotate(15deg);
+                filter: drop-shadow(0 0 15px rgba(76, 201, 240, 0.9));
+            }
+            50% {
+                transform: translate(40px, 0) rotate(0deg);
+                filter: drop-shadow(0 0 20px rgba(76, 201, 240, 1));
+            }
+            75% {
+                transform: translate(20px, 30px) rotate(-15deg);
+                filter: drop-shadow(0 0 15px rgba(76, 201, 240, 0.9));
+            }
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+                filter: drop-shadow(0 0 10px rgba(76, 201, 240, 0.7));
+            }
+        }
+        
+        @keyframes floatMinecraftFast {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(30px, -40px) rotate(20deg);
+            }
+            50% {
+                transform: translate(60px, 0) rotate(0deg);
+            }
+            75% {
+                transform: translate(30px, 40px) rotate(-20deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .nav-link {
+                font-size: 1rem;
+                padding: 0.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 0 1rem;
+                height: 70px;
+            }
+            
+            .logo {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            .logo-text {
+                font-size: 1.4rem;
+            }
+            
+            .server-ip {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2.3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Minecraft Icons Animation -->
+    <div class="minecraft-icon diamond" style="top: 20%; left: 15%; animation-delay: 0s;"></div>
+    <div class="minecraft-icon sword" style="top: 60%; left: 80%; animation-delay: 1s;"></div>
+    <div class="minecraft-icon pickaxe" style="top: 30%; left: 75%; animation-delay: 2s;"></div>
+    <div class="minecraft-icon creeper" style="top: 70%; left: 20%; animation-delay: 3s;"></div>
+    <div class="minecraft-icon grass" style="top: 40%; left: 10%; animation-delay: 1.5s;"></div>
+    <div class="minecraft-icon diamond" style="top: 80%; left: 85%; animation-delay: 2.5s;"></div>
+    <div class="minecraft-icon pickaxe" style="top: 15%; left: 85%; animation-delay: 0.5s;"></div>
+    <div class="minecraft-icon grass" style="top: 65%; left: 15%; animation-delay: 3.5s;"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-container">
+            <div class="logo">
+                <i class="fas fa-cube"></i>
+            </div>
+            <div class="logo-text">سرور زد کرفت</div>
+        </div>
+        
+        <div class="nav-links">
+            <a href="#" class="nav-link active" data-page="home">صفحه اصلی</a>
+            <a href="#" class="nav-link" data-page="ranks">رنک‌ها</a>
+            <a href="#" class="nav-link" data-page="jobs">شغل‌ها</a>
+            <a href="#" class="nav-link" data-page="login">ورود به سرور</a>
+        </div>
+        
+        <div class="server-ip">
+            IP: play.zcraft.ir
+        </div>
+    </header>
+    
+    <!-- Home Page -->
+    <section id="home" class="page active">
+        <div class="hero">
+            <h1 class="hero-title">تجربه‌ای متفاوت در ماینکرفت</h1>
+            <p class="hero-subtitle">
+                به سرور زد کرفت خوش آمدید! بزرگترین سرور نقش‌آفرینی فارسی با بیش از ۵۰ ویژگی منحصر به فرد و جامعه‌ای فعال
+            </p>
+            
+            <div class="hero-btns">
+                <button class="btn btn-primary">
+                    <i class="fas fa-play-circle"></i> اتصال به سرور
+                </button>
+                <button class="btn btn-secondary">
+                    <i class="fas fa-crown"></i> خرید رنک
+                </button>
+            </div>
+        </div>
+        
+        <div class="section-title">ویژگی‌های منحصر به فرد</div>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>سیستم ضد تقلب پیشرفته</h3>
+                <p>با سیستم آنتی چیت اختصاصی، تجربه بازی کاملاً عادلانه‌ای داشته باشید</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>جامعه فعال</h3>
+                <p>به جمع هزاران بازیکن فعال ما بپیوندید و دوستان جدید پیدا کنید</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h3>بروزرسانی مداوم</h3>
+                <p>هر هفته محتوای جدید و ویژگی‌های جذاب به سرور اضافه می‌شود</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Ranks Page -->
+    <section id="ranks" class="page">
+        <div class="section-title">رنک‌های اختصاصی سرور</div>
+        
+        <div class="ranks-grid">
+            <!-- Rank 1 -->
+            <div class="rank-card">
+                <div class="rank-header">
+                    <div class="rank-name">🥷 Z +</div>
+                    <div class="rank-price">قیمت: 200 هزار تومان</div>
+                </div>
+                <div class="rank-body">
+                    <ul class="rank-features">
+                        <li><i class="fas fa-check-circle"></i> دسترسی دائمی</li>
+                        <li><i class="fas fa-check-circle"></i> تمامی کیت‌های نقش‌آفرینی</li>
+                        <li><i class="fas fa-check-circle"></i> دسترسی به /anvil و /glow</li>
+                        <li><i class="fas fa-check-circle"></i> امکان ایجاد گنگ</li>
+                        <li><i class="fas fa-check-circle"></i> 300 هزار سکه درون سرور</li>
+                        <li><i class="fas fa-check-circle"></i> دسترسی به /hat و /chestshop</li>
+                        <li><i class="fas fa-check-circle"></i> اولویت در تپ لیست</li>
+                    </ul>
+                    <button class="rank-btn">خرید رنک</button>
+                </div>
+            </div>
+            
+            <!-- Rank 2 -->
+            <div class="rank-card">
+                <div class="rank-header">
+                    <div class="rank-name">Z 🔥</div>
+                    <div class="rank-price">قیمت: 120 هزار تومان</div>
+                </div>
+                <div class="rank-body">
+                    <ul class="rank-features">
+                        <li><i class="fas fa-check-circle"></i> دسترسی به /glow</li>
+                        <li><i class="fas fa-check-circle"></i> شغل سوات به مدت 30 روز</li>
+                        <li><i class="fas fa-check-circle"></i> دسترسی به /craft</li>
+                        <li><i class="fas fa-check-circle"></i> کیت Z</li>
+                        <li><i class="fas fa-check-circle"></i> 100 هزار سکه درون سرور</li>
+                        <li><i class="fas fa-check-circle"></i> دسترسی به /hat</li>
+                        <li><i class="fas fa-check-circle"></i> اولویت دوم در تپ لیست</li>
+                    </ul>
+                    <button class="rank-btn">خرید رنک</button>
+                </div>
+            </div>
+            
+            <!-- Rank 3 -->
+            <div class="rank-card">
+                <div class="rank-header">
+                    <div class="rank-name">Older ⛰️</div>
+                    <div class="rank-price">قیمت: 80 هزار تومان</div>
+                </div>
+                <div class="rank-body">
+                    <ul class="rank-features">
+                        <li><i class="fas fa-check-circle"></i> دسترسی به /craft</li>
+                        <li><i class="fas fa-check-circle"></i> فروش 10 آیتم در حراجی</li>
+                        <li><i class="fas fa-check-circle"></i> کیت Older</li>
+                        <li><i class="fas fa-check-circle"></i> شغل مافیا به مدت 10 روز</li>
+                        <li><i class="fas fa-check-circle"></i> 80 هزار سکه درون سرور</li>
+                        <li><i class="fas fa-check-circle"></i> دسترسی به /hat</li>
+                        <li><i class="fas fa-check-circle"></i> اولویت سوم در تپ لیست</li>
+                    </ul>
+                    <button class="rank-btn">خرید رنک</button>
+                </div>
+            </div>
+            
+            <!-- Rank 4 -->
+            <div class="rank-card">
+                <div class="rank-header">
+                    <div class="rank-name">Dc 🔸️</div>
+                    <div class="rank-price">قیمت: 30 هزار تومان</div>
+                </div>
+                <div class="rank-body">
+                    <ul class="rank-features">
+                        <li><i class="fas fa-check-circle"></i> فروش 8 آیتم در حراجی</li>
+                        <li><i class="fas fa-check-circle"></i> کیت Dc</li>
+                        <li><i class="fas fa-check-circle"></i> شغل معدن‌چی طلا به مدت 3 روز</li>
+                        <li><i class="fas fa-check-circle"></i> 50 هزار سکه درون سرور</li>
+                        <li><i class="fas fa-check-circle"></i> دسترسی به /chestshop</li>
+                        <li><i class="fas fa-check-circle"></i> اولویت چهارم در تپ لیست</li>
+                    </ul>
+                    <button class="rank-btn">خرید رنک</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Jobs Page -->
+    <section id="jobs" class="page">
+        <div class="section-title">شغل‌های سرور زد کرفت</div>
+        
+        <div class="jobs-container">
+            <div class="job-card">
+                <div class="job-icon job-police">
+                    👮
+                </div>
+                <div class="job-content">
+                    <h3 class="job-title">پلیس</h3>
+                    <div class="job-description">
+                        <p>جیل کردن افراد وانتد دار (از 1 تا 2)</p>
+                        <p>برقراری نظم و امنیت در اسپان به کمک سوات و اف بی آی</p>
+                        <p>کشتن افراد شورشی و دزد (رابری)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="job-card">
+                <div class="job-icon job-fbi">
+                    🔫
+                </div>
+                <div class="job-content">
+                    <h3 class="job-title">اف بی آی</h3>
+                    <div class="job-description">
+                        <p>جیل کردن افراد وانتد دار (از 2 تا 4)</p>
+                        <p>برقراری نظم و امنیت در اسپان به کمک سوات و پلیس</p>
+                        <p>در صورت دیدن مواد مخدر در دست کسی اون رو به جیل ببره</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="job-card">
+                <div class="job-icon job-swat">
+                    🛡️
+                </div>
+                <div class="job-content">
+                    <h3 class="job-title">سوات</h3>
+                    <div class="job-description">
+                        <p>جیل کردن افراد وانتد دار (از 1 تا 5)</p>
+                        <p>در صورت دیدن فروش گان اد دادن وانتد و بردن به جیل (2 وانتد)</p>
+                        <p>در صورت دیدن فروش مواد اد دادن وانتد و بردن به جیل (3 وانتد)</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="job-card">
+                <div class="job-icon job-miner">
+                    ⛏️
+                </div>
+                <div class="job-content">
+                    <h3 class="job-title">معدن‌چی</h3>
+                    <div class="job-description">
+                        <p>استخراج مواد معدنی از معدن شهر</p>
+                        <p>فروش مواد معدنی با قیمت 1.5 برابر قیمت عادی</p>
+                        <p>درآمدزایی عالی برای تازه واردها</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="job-card">
+                <div class="job-icon job-medic">
+                    🏮
+                </div>
+                <div class="job-content">
+                    <h3 class="job-title">فروشنده سلاح</h3>
+                    <div class="job-description">
+                        <p>فروش سلاح به بازیکنان</p>
+                        <p>دریافت سهمیه از لیدر خود</p>
+                        <p>گزارش فروش و دریافت حقوق بین 30 تا 100 هزار سکه</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="job-card">
+                <div class="job-icon job-hitman">
+                    👤
+                </div>
+                <div class="job-content">
+                    <h3 class="job-title">ساقی</h3>
+                    <div class="job-description">
+                        <p>فروش مواد به بازیکنان</p>
+                        <p>دریافت سهمیه مواد از لیدر</p>
+                        <p>درآمدزایی بالا با ریسک دستگیری توسط پلیس</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Login Page -->
+    <section id="login" class="page">
+        <div class="section-title">ورود به سرور زد کرفت</div>
+        
+        <div class="login-form">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">نام کاربری ماینکرفت:</label>
+                    <input type="text" id="username" class="form-control" placeholder="نام کاربری خود را وارد کنید" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">رمز عبور:</label>
+                    <input type="password" id="password" class="form-control" placeholder="رمز عبور خود را وارد کنید" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="server">انتخاب سرور:</label>
+                    <select id="server" class="form-control">
+                        <option value="main">سرور اصلی زد کرفت</option>
+                        <option value="beta">سرور آزمایشی</option>
+                        <option value="events">سرور ایونت‌ها</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-sign-in-alt"></i> ورود به سرور
+                </button>
+            </form>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <p style="margin-bottom: 1rem; color: #94a3b8;">آیا حساب کاربری ندارید؟</p>
+                <button class="btn btn-secondary">
+                    <i class="fas fa-user-plus"></i> ساخت حساب کاربری
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p>سرور ماینکرفت زد کرفت | ZCraft Minecraft Server</p>
+        <p class="copyright">© 2023 تمامی حقوق محفوظ است</p>
+    </footer>
+    
+    <script>
+        // Page navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('.nav-link').forEach(l => {
+                    l.classList.remove('active');
+                });
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Hide all pages
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Show target page
+                const targetPage = this.getAttribute('data-page');
+                document.getElementById(targetPage).classList.add('active');
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            });
+        });
+        
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const server = document.getElementById('server').value;
+            
+            alert(`در حال اتصال به سرور ${server} با نام کاربری ${username}...`);
+        });
+        
+        // Connect button
+        document.querySelector('.btn-primary').addEventListener('click', () => {
+            alert('در حال اتصال به سرور... آدرس: play.zcraft.ir');
+        });
+        
+        // Rank buttons
+        document.querySelectorAll('.rank-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const rankName = this.closest('.rank-card').querySelector('.rank-name').textContent;
+                alert(`شما در حال خرید رنک ${rankName} هستید. در نسخه کامل به صفحه پرداخت هدایت می‌شوید.`);
+            });
+        });
+        
+        // Keep Minecraft icons within viewport and avoid content
+        function keepIconsInViewport() {
+            const icons = document.querySelectorAll('.minecraft-icon');
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            
+            icons.forEach(icon => {
+                const rect = icon.getBoundingClientRect();
+                
+                // Reposition if overlapping with header
+                if (rect.top < 100) {
+                    icon.style.top = `${Math.random() * (viewportHeight - 200) + 100}px`;
+                }
+                
+                // Reposition if overlapping with content
+                const contentRects = document.querySelectorAll('.page.active > *');
+                let reposition = false;
+                
+                contentRects.forEach(content => {
+                    const contentRect = content.getBoundingClientRect();
+                    if (
+                        rect.left < contentRect.right &&
+                        rect.right > contentRect.left &&
+                        rect.top < contentRect.bottom &&
+                        rect.bottom > contentRect.top
+                    ) {
+                        reposition = true;
+                    }
+                });
+                
+                if (reposition) {
+                    icon.style.left = `${Math.random() * (viewportWidth - 100)}px`;
+                    icon.style.top = `${Math.random() * (viewportHeight - 200) + 100}px`;
+                }
+                
+                // Ensure icons stay within viewport
+                if (rect.left < 0 || rect.right > viewportWidth || rect.top < 0 || rect.bottom > viewportHeight) {
+                    icon.style.left = `${Math.random() * (viewportWidth - 100)}px`;
+                    icon.style.top = `${Math.random() * (viewportHeight - 200) + 100}px`;
+                }
+            });
+            
+            // Check periodically
+            setTimeout(keepIconsInViewport, 2000);
+        }
+        
+        // Initialize icon position checker
+        keepIconsInViewport();
+        
+        // Make icons move faster on mobile
+        if (window.innerWidth <= 768) {
+            const icons = document.querySelectorAll('.minecraft-icon');
+            icons.forEach(icon => {
+                icon.style.animation = 'floatMinecraftFast 6s infinite ease-in-out';
+            });
+        }
+    </script>
+</body>
+</html>
