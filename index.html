@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سرور ماینکرفت زد کرفت | ZCraft</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Samim:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&family=Samim:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #4361ee;
@@ -26,7 +26,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Samim', sans-serif;
+            font-family: 'Vazirmatn', 'Samim', sans-serif;
         }
         
         body {
@@ -35,7 +35,7 @@
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
-            background-image: url('https://images.unsplash.com/photo-1633186710893-9f7c1c7b7e1d?ixlib=rb-4.0.3');
+            background-image: url('https://s6.uupload.ir/files/phone-wallpaper-v0-anrmmvmkl8nb1_7qda.jpg');
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
@@ -48,145 +48,144 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.95));
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.7), rgba(30, 41, 59, 0.8));
             z-index: -1;
         }
         
-        /* Minecraft Custom Icons */
-        .minecraft-icon {
+        /* Animated Background */
+        .animated-bg {
             position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(45deg, #3a0ca3, #4361ee, #4cc9f0, #f72585);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            opacity: 0.2;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Bubble Animation */
+        .bubbles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
             z-index: -1;
-            animation: floatMinecraft 8s infinite ease-in-out;
-            filter: drop-shadow(0 0 10px rgba(76, 201, 240, 0.7));
-            opacity: 0.3;
-            user-select: none;
-            pointer-events: none;
-        }
-        
-        .diamond {
-            width: 50px;
-            height: 50px;
-            background: 
-                linear-gradient(135deg, #4cc9f0, #2a8eb0);
-            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-        }
-        
-        .pickaxe {
-            width: 60px;
-            height: 60px;
-            background: 
-                linear-gradient(135deg, #a0a0a0, #707070);
-            position: relative;
-        }
-        
-        .pickaxe::before {
-            content: '';
-            position: absolute;
-            width: 70%;
-            height: 30%;
-            background: 
-                linear-gradient(135deg, #d0d0d0, #a0a0a0);
-            top: 35%;
-            left: 15%;
-        }
-        
-        .pickaxe::after {
-            content: '';
-            position: absolute;
-            width: 30%;
-            height: 70%;
-            background: 
-                linear-gradient(135deg, #606060, #404040);
-            top: 15%;
-            left: 35%;
-        }
-        
-        .creeper {
-            width: 50px;
-            height: 50px;
-            background: 
-                linear-gradient(135deg, #1a936f, #0d5c48);
-            position: relative;
-            border-radius: 5px;
-        }
-        
-        .creeper::before, .creeper::after {
-            content: '';
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: black;
-            border-radius: 2px;
-        }
-        
-        .creeper::before {
-            top: 15px;
-            left: 10px;
-        }
-        
-        .creeper::after {
-            top: 15px;
-            right: 10px;
-        }
-        
-        .grass {
-            width: 60px;
-            height: 60px;
-            background: 
-                linear-gradient(135deg, #7cfc00, #5cb300);
-            position: relative;
             overflow: hidden;
         }
         
-        .grass::before {
-            content: '';
+        .bubble {
             position: absolute;
-            width: 100%;
+            bottom: -100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: rise 15s infinite ease-in;
+        }
+        
+        .bubble:nth-child(1) {
+            width: 40px;
+            height: 40px;
+            left: 15%;
+            animation-duration: 8s;
+        }
+        
+        .bubble:nth-child(2) {
+            width: 20px;
             height: 20px;
-            background: 
-                linear-gradient(135deg, #5cb300, #4a8f00);
-            bottom: 0;
+            left: 30%;
+            animation-duration: 5s;
+            animation-delay: 1s;
         }
         
-        .grass::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 10px;
-            background: 
-                linear-gradient(135deg, #4a8f00, #3a6d00);
-            bottom: 0;
+        .bubble:nth-child(3) {
+            width: 50px;
+            height: 50px;
+            left: 45%;
+            animation-duration: 7s;
+            animation-delay: 2s;
         }
         
-        .sword {
-            width: 60px;
-            height: 60px;
-            position: relative;
+        .bubble:nth-child(4) {
+            width: 80px;
+            height: 80px;
+            left: 60%;
+            animation-duration: 11s;
+            animation-delay: 0s;
         }
         
-        .sword::before {
-            content: '';
-            position: absolute;
-            width: 10px;
-            height: 60px;
-            background: 
-                linear-gradient(135deg, #c0c0c0, #909090);
-            left: 50%;
-            top: 0;
-            transform: translateX(-50%);
+        .bubble:nth-child(5) {
+            width: 35px;
+            height: 35px;
+            left: 75%;
+            animation-duration: 6s;
+            animation-delay: 1s;
         }
         
-        .sword::after {
-            content: '';
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background: 
-                linear-gradient(135deg, #e0e0e0, #a0a0a0);
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
+        .bubble:nth-child(6) {
+            width: 45px;
+            height: 45px;
+            left: 20%;
+            animation-duration: 8s;
+            animation-delay: 3s;
+        }
+        
+        .bubble:nth-child(7) {
+            width: 25px;
+            height: 25px;
+            left: 40%;
+            animation-duration: 7s;
+            animation-delay: 2s;
+        }
+        
+        .bubble:nth-child(8) {
+            width: 80px;
+            height: 80px;
+            left: 65%;
+            animation-duration: 6s;
+            animation-delay: 1s;
+        }
+        
+        .bubble:nth-child(9) {
+            width: 15px;
+            height: 15px;
+            left: 25%;
+            animation-duration: 9s;
+            animation-delay: 0s;
+        }
+        
+        .bubble:nth-child(10) {
+            width: 50px;
+            height: 50px;
+            left: 80%;
+            animation-duration: 5s;
+            animation-delay: 3s;
+        }
+        
+        @keyframes rise {
+            0% {
+                bottom: -100px;
+                transform: translateX(0);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateX(50px);
+                opacity: 0.3;
+            }
+            100% {
+                bottom: 1080px;
+                transform: translateX(-50px);
+                opacity: 0;
+            }
         }
         
         .header {
@@ -239,6 +238,7 @@
             background-clip: text;
             color: transparent;
             letter-spacing: 1px;
+            font-family: 'Samim', sans-serif;
         }
         
         .nav-links {
@@ -288,6 +288,66 @@
             animation: glow 2s infinite alternate;
         }
         
+        /* Hamburger Menu */
+        .hamburger-menu {
+            display: none;
+            cursor: pointer;
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            z-index: 1100;
+        }
+        
+        .hamburger-menu div {
+            width: 30px;
+            height: 3px;
+            background-color: var(--accent);
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            height: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.5s ease;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
+            padding-top: 80px;
+        }
+        
+        .mobile-menu.active {
+            left: 0;
+        }
+        
+        .mobile-menu ul {
+            list-style: none;
+            padding: 2rem;
+        }
+        
+        .mobile-menu ul li {
+            margin-bottom: 2rem;
+        }
+        
+        .mobile-menu ul li a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.5rem;
+            display: block;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .mobile-menu ul li a:hover {
+            background: rgba(67, 97, 238, 0.2);
+            color: var(--accent);
+        }
+        
         .page {
             min-height: 100vh;
             padding: var(--section-padding);
@@ -318,6 +378,7 @@
             line-height: 1.2;
             text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             animation: textGlow 3s infinite alternate;
+            font-family: 'Samim', sans-serif;
         }
         
         .hero-subtitle {
@@ -397,13 +458,13 @@
             font-size: 2.5rem;
             margin-bottom: 3rem;
             position: relative;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
             background: linear-gradient(to right, var(--primary), var(--accent));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            font-family: 'Samim', sans-serif;
+            width: 100%;
+            display: block;
         }
         
         .section-title:after {
@@ -753,6 +814,37 @@
             font-size: 0.9rem;
         }
         
+        .rank-details {
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-left: 3px solid var(--accent);
+        }
+        
+        .rank-details h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .rank-details ul {
+            list-style-type: none;
+            padding-right: 1.5rem;
+        }
+        
+        .rank-details li {
+            padding: 0.5rem 0;
+            color: #cbd5e1;
+            position: relative;
+        }
+        
+        .rank-details li:before {
+            content: '•';
+            position: absolute;
+            right: -1.5rem;
+            color: var(--accent);
+        }
+        
         /* Animations */
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.4); }
@@ -768,47 +860,6 @@
         @keyframes textGlow {
             0% { text-shadow: 0 0 5px rgba(67, 97, 238, 0.3); }
             100% { text-shadow: 0 0 20px rgba(67, 97, 238, 0.7); }
-        }
-        
-        @keyframes floatMinecraft {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-                filter: drop-shadow(0 0 10px rgba(76, 201, 240, 0.7));
-            }
-            25% {
-                transform: translate(20px, -30px) rotate(15deg);
-                filter: drop-shadow(0 0 15px rgba(76, 201, 240, 0.9));
-            }
-            50% {
-                transform: translate(40px, 0) rotate(0deg);
-                filter: drop-shadow(0 0 20px rgba(76, 201, 240, 1));
-            }
-            75% {
-                transform: translate(20px, 30px) rotate(-15deg);
-                filter: drop-shadow(0 0 15px rgba(76, 201, 240, 0.9));
-            }
-            100% {
-                transform: translate(0, 0) rotate(0deg);
-                filter: drop-shadow(0 0 10px rgba(76, 201, 240, 0.7));
-            }
-        }
-        
-        @keyframes floatMinecraftFast {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-            }
-            25% {
-                transform: translate(30px, -40px) rotate(20deg);
-            }
-            50% {
-                transform: translate(60px, 0) rotate(0deg);
-            }
-            75% {
-                transform: translate(30px, 40px) rotate(-20deg);
-            }
-            100% {
-                transform: translate(0, 0) rotate(0deg);
-            }
         }
         
         /* Responsive Design */
@@ -867,19 +918,46 @@
             .nav-links {
                 display: none;
             }
+            
+            .hamburger-menu {
+                display: block;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Minecraft Icons Animation -->
-    <div class="minecraft-icon diamond" style="top: 20%; left: 15%; animation-delay: 0s;"></div>
-    <div class="minecraft-icon sword" style="top: 60%; left: 80%; animation-delay: 1s;"></div>
-    <div class="minecraft-icon pickaxe" style="top: 30%; left: 75%; animation-delay: 2s;"></div>
-    <div class="minecraft-icon creeper" style="top: 70%; left: 20%; animation-delay: 3s;"></div>
-    <div class="minecraft-icon grass" style="top: 40%; left: 10%; animation-delay: 1.5s;"></div>
-    <div class="minecraft-icon diamond" style="top: 80%; left: 85%; animation-delay: 2.5s;"></div>
-    <div class="minecraft-icon pickaxe" style="top: 15%; left: 85%; animation-delay: 0.5s;"></div>
-    <div class="minecraft-icon grass" style="top: 65%; left: 15%; animation-delay: 3.5s;"></div>
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+    
+    <!-- Bubble Animation -->
+    <div class="bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+    
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" id="hamburgerMenu">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#" class="nav-link active" data-page="home">خانه</a></li>
+            <li><a href="#" class="nav-link" data-page="blog">وبلاگ</a></li>
+            <li><a href="#" class="nav-link" data-page="ranks">فروشگاه (خرید رنک)</a></li>
+        </ul>
+    </div>
     
     <!-- Header -->
     <header class="header">
@@ -891,10 +969,9 @@
         </div>
         
         <div class="nav-links">
-            <a href="#" class="nav-link active" data-page="home">صفحه اصلی</a>
-            <a href="#" class="nav-link" data-page="ranks">رنک‌ها</a>
-            <a href="#" class="nav-link" data-page="jobs">شغل‌ها</a>
-            <a href="#" class="nav-link" data-page="login">ورود به سرور</a>
+            <a href="#" class="nav-link active" data-page="home">خانه</a>
+            <a href="#" class="nav-link" data-page="blog">وبلاگ</a>
+            <a href="#" class="nav-link" data-page="ranks">فروشگاه (خرید رنک)</a>
         </div>
         
         <div class="server-ip">
@@ -907,20 +984,20 @@
         <div class="hero">
             <h1 class="hero-title">تجربه‌ای متفاوت در ماینکرفت</h1>
             <p class="hero-subtitle">
-                به سرور زد کرفت خوش آمدید! بزرگترین سرور نقش‌آفرینی فارسی با بیش از ۵۰ ویژگی منحصر به فرد و جامعه‌ای فعال
+                به سرور زد کرفت خوش آمدید! سرور اختصاصی نقش‌آفرینی فارسی با سیستم‌های منحصر به فرد و جامعه‌ای پویا
             </p>
             
             <div class="hero-btns">
-                <button class="btn btn-primary">
+                <button class="btn btn-primary" id="connectBtn">
                     <i class="fas fa-play-circle"></i> اتصال به سرور
                 </button>
-                <button class="btn btn-secondary">
+                <button class="btn btn-secondary" id="buyRankBtn">
                     <i class="fas fa-crown"></i> خرید رنک
                 </button>
             </div>
         </div>
         
-        <div class="section-title">ویژگی‌های منحصر به فرد</div>
+        <div class="section-title">ویژگی‌های اختصاصی سرور</div>
         
         <div class="features-grid">
             <div class="feature-card">
@@ -928,116 +1005,68 @@
                     <i class="fas fa-shield-alt"></i>
                 </div>
                 <h3>سیستم ضد تقلب پیشرفته</h3>
-                <p>با سیستم آنتی چیت اختصاصی، تجربه بازی کاملاً عادلانه‌ای داشته باشید</p>
+                <p>با سیستم اختصاصی آنتی چیت زد کرفت، تجربه بازی عادلانه‌ای داشته باشید</p>
             </div>
             
             <div class="feature-card">
                 <div class="feature-icon">
                     <i class="fas fa-users"></i>
                 </div>
-                <h3>جامعه فعال</h3>
-                <p>به جمع هزاران بازیکن فعال ما بپیوندید و دوستان جدید پیدا کنید</p>
+                <h3>جامعه منسجم</h3>
+                <p>به جمع بازیکنان اختصاصی زد کرفت بپیوندید و دوستان جدید پیدا کنید</p>
             </div>
             
             <div class="feature-card">
                 <div class="feature-icon">
                     <i class="fas fa-sync-alt"></i>
                 </div>
-                <h3>بروزرسانی مداوم</h3>
-                <p>هر هفته محتوای جدید و ویژگی‌های جذاب به سرور اضافه می‌شود</p>
+                <h3>پشتیبانی و توسعه مداوم</h3>
+                <p>تیم توسعه همیشه در حال بهبود سرور و رفع مشکلات بازیکنان است</p>
             </div>
         </div>
     </section>
     
-    <!-- Ranks Page -->
-    <section id="ranks" class="page">
-        <div class="section-title">رنک‌های اختصاصی سرور</div>
+    <!-- Blog Page -->
+    <section id="blog" class="page">
+        <div class="section-title">وبلاگ سرور</div>
         
-        <div class="ranks-grid">
-            <!-- Rank 1 -->
-            <div class="rank-card">
-                <div class="rank-header">
-                    <div class="rank-name">🥷 Z +</div>
-                    <div class="rank-price">قیمت: 200 هزار تومان</div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-newspaper"></i>
                 </div>
-                <div class="rank-body">
-                    <ul class="rank-features">
-                        <li><i class="fas fa-check-circle"></i> دسترسی دائمی</li>
-                        <li><i class="fas fa-check-circle"></i> تمامی کیت‌های نقش‌آفرینی</li>
-                        <li><i class="fas fa-check-circle"></i> دسترسی به /anvil و /glow</li>
-                        <li><i class="fas fa-check-circle"></i> امکان ایجاد گنگ</li>
-                        <li><i class="fas fa-check-circle"></i> 300 هزار سکه درون سرور</li>
-                        <li><i class="fas fa-check-circle"></i> دسترسی به /hat و /chestshop</li>
-                        <li><i class="fas fa-check-circle"></i> اولویت در تپ لیست</li>
-                    </ul>
-                    <button class="rank-btn">خرید رنک</button>
-                </div>
+                <h3>آخرین اخبار</h3>
+                <p>آپدیت جدید سرور با ویژگی‌های منحصر به فرد منتشر شد</p>
+                <button class="btn btn-secondary" style="margin-top: 20px;">
+                    مطالعه بیشتر
+                </button>
             </div>
             
-            <!-- Rank 2 -->
-            <div class="rank-card">
-                <div class="rank-header">
-                    <div class="rank-name">Z 🔥</div>
-                    <div class="rank-price">قیمت: 120 هزار تومان</div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-calendar-alt"></i>
                 </div>
-                <div class="rank-body">
-                    <ul class="rank-features">
-                        <li><i class="fas fa-check-circle"></i> دسترسی به /glow</li>
-                        <li><i class="fas fa-check-circle"></i> شغل سوات به مدت 30 روز</li>
-                        <li><i class="fas fa-check-circle"></i> دسترسی به /craft</li>
-                        <li><i class="fas fa-check-circle"></i> کیت Z</li>
-                        <li><i class="fas fa-check-circle"></i> 100 هزار سکه درون سرور</li>
-                        <li><i class="fas fa-check-circle"></i> دسترسی به /hat</li>
-                        <li><i class="fas fa-check-circle"></i> اولویت دوم در تپ لیست</li>
-                    </ul>
-                    <button class="rank-btn">خرید رنک</button>
-                </div>
+                <h3>رویدادهای پیش‌رو</h3>
+                <p>مسابقات هفتگی با جوایز نفیس برای برندگان</p>
+                <button class="btn btn-secondary" style="margin-top: 20px;">
+                    مشاهده رویدادها
+                </button>
             </div>
             
-            <!-- Rank 3 -->
-            <div class="rank-card">
-                <div class="rank-header">
-                    <div class="rank-name">Older ⛰️</div>
-                    <div class="rank-price">قیمت: 80 هزار تومان</div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-trophy"></i>
                 </div>
-                <div class="rank-body">
-                    <ul class="rank-features">
-                        <li><i class="fas fa-check-circle"></i> دسترسی به /craft</li>
-                        <li><i class="fas fa-check-circle"></i> فروش 10 آیتم در حراجی</li>
-                        <li><i class="fas fa-check-circle"></i> کیت Older</li>
-                        <li><i class="fas fa-check-circle"></i> شغل مافیا به مدت 10 روز</li>
-                        <li><i class="fas fa-check-circle"></i> 80 هزار سکه درون سرور</li>
-                        <li><i class="fas fa-check-circle"></i> دسترسی به /hat</li>
-                        <li><i class="fas fa-check-circle"></i> اولویت سوم در تپ لیست</li>
-                    </ul>
-                    <button class="rank-btn">خرید رنک</button>
-                </div>
-            </div>
-            
-            <!-- Rank 4 -->
-            <div class="rank-card">
-                <div class="rank-header">
-                    <div class="rank-name">Dc 🔸️</div>
-                    <div class="rank-price">قیمت: 30 هزار تومان</div>
-                </div>
-                <div class="rank-body">
-                    <ul class="rank-features">
-                        <li><i class="fas fa-check-circle"></i> فروش 8 آیتم در حراجی</li>
-                        <li><i class="fas fa-check-circle"></i> کیت Dc</li>
-                        <li><i class="fas fa-check-circle"></i> شغل معدن‌چی طلا به مدت 3 روز</li>
-                        <li><i class="fas fa-check-circle"></i> 50 هزار سکه درون سرور</li>
-                        <li><i class="fas fa-check-circle"></i> دسترسی به /chestshop</li>
-                        <li><i class="fas fa-check-circle"></i> اولویت چهارم در تپ لیست</li>
-                    </ul>
-                    <button class="rank-btn">خرید رنک</button>
-                </div>
+                <h3>مسابقات هفتگی</h3>
+                <p>شرکت در مسابقات و برنده شدن جایزه‌های ویژه</p>
+                <button class="btn btn-secondary" style="margin-top: 20px;">
+                    ثبت نام در مسابقه
+                </button>
             </div>
         </div>
-    </section>
-    
-    <!-- Jobs Page -->
-    <section id="jobs" class="page">
-        <div class="section-title">شغل‌های سرور زد کرفت</div>
+        
+        <!-- Jobs Section in Blog -->
+        <div class="section-title" style="margin-top: 80px;">شغل‌های سرور</div>
         
         <div class="jobs-container">
             <div class="job-card">
@@ -1048,7 +1077,7 @@
                     <h3 class="job-title">پلیس</h3>
                     <div class="job-description">
                         <p>جیل کردن افراد وانتد دار (از 1 تا 2)</p>
-                        <p>برقراری نظم و امنیت در اسپان به کمک سوات و اف بی آی</p>
+                        <p>برقراری نظم و امنیت در اسپان</p>
                         <p>کشتن افراد شورشی و دزد (رابری)</p>
                     </div>
                 </div>
@@ -1062,7 +1091,7 @@
                     <h3 class="job-title">اف بی آی</h3>
                     <div class="job-description">
                         <p>جیل کردن افراد وانتد دار (از 2 تا 4)</p>
-                        <p>برقراری نظم و امنیت در اسپان به کمک سوات و پلیس</p>
+                        <p>برقراری نظم و امنیت در اسپان</p>
                         <p>در صورت دیدن مواد مخدر در دست کسی اون رو به جیل ببره</p>
                     </div>
                 </div>
@@ -1081,86 +1110,96 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="job-card">
-                <div class="job-icon job-miner">
-                    ⛏️
-                </div>
-                <div class="job-content">
-                    <h3 class="job-title">معدن‌چی</h3>
-                    <div class="job-description">
-                        <p>استخراج مواد معدنی از معدن شهر</p>
-                        <p>فروش مواد معدنی با قیمت 1.5 برابر قیمت عادی</p>
-                        <p>درآمدزایی عالی برای تازه واردها</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="job-card">
-                <div class="job-icon job-medic">
-                    🏮
-                </div>
-                <div class="job-content">
-                    <h3 class="job-title">فروشنده سلاح</h3>
-                    <div class="job-description">
-                        <p>فروش سلاح به بازیکنان</p>
-                        <p>دریافت سهمیه از لیدر خود</p>
-                        <p>گزارش فروش و دریافت حقوق بین 30 تا 100 هزار سکه</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="job-card">
-                <div class="job-icon job-hitman">
-                    👤
-                </div>
-                <div class="job-content">
-                    <h3 class="job-title">ساقی</h3>
-                    <div class="job-description">
-                        <p>فروش مواد به بازیکنان</p>
-                        <p>دریافت سهمیه مواد از لیدر</p>
-                        <p>درآمدزایی بالا با ریسک دستگیری توسط پلیس</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
     
-    <!-- Login Page -->
-    <section id="login" class="page">
-        <div class="section-title">ورود به سرور زد کرفت</div>
+    <!-- Ranks Page -->
+    <section id="ranks" class="page">
+        <div class="section-title">فروشگاه رنک‌ها</div>
         
-        <div class="login-form">
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="username">نام کاربری ماینکرفت:</label>
-                    <input type="text" id="username" class="form-control" placeholder="نام کاربری خود را وارد کنید" required>
+        <div class="ranks-grid">
+            <!-- Rank 1 -->
+            <div class="rank-card">
+                <div class="rank-header">
+                    <div class="rank-name">🥷 Z +</div>
+                    <div class="rank-price">قیمت: 200 هزار تومان</div>
                 </div>
-                
-                <div class="form-group">
-                    <label for="password">رمز عبور:</label>
-                    <input type="password" id="password" class="form-control" placeholder="رمز عبور خود را وارد کنید" required>
+                <div class="rank-body">
+                    <ul class="rank-features">
+                        <li><i class="fas fa-check-circle"></i> دسترسی دائمی</li>
+                        <li><i class="fas fa-check-circle"></i> تمامی کیت‌های نقش‌آفرینی</li>
+                        <li><i class="fas fa-check-circle"></i> دسترسی به /anvil و /glow</li>
+                        <li><i class="fas fa-check-circle"></i> امکان ایجاد گنگ</li>
+                    </ul>
+                    <button class="rank-btn">خرید رنک</button>
+                    
+                    <div class="rank-details">
+                        <h4>جزئیات بیشتر:</h4>
+                        <ul>
+                            <li>300 هزار سکه درون سرور</li>
+                            <li>دسترسی به /hat و /chestshop</li>
+                            <li>اولویت در تپ لیست</li>
+                            <li>دسترسی به تمامی دستورات ویژه</li>
+                            <li>پشتیبانی اختصاصی</li>
+                        </ul>
+                    </div>
                 </div>
-                
-                <div class="form-group">
-                    <label for="server">انتخاب سرور:</label>
-                    <select id="server" class="form-control">
-                        <option value="main">سرور اصلی زد کرفت</option>
-                        <option value="beta">سرور آزمایشی</option>
-                        <option value="events">سرور ایونت‌ها</option>
-                    </select>
-                </div>
-                
-                <button type="submit" class="btn btn-primary" style="width: 100%;">
-                    <i class="fas fa-sign-in-alt"></i> ورود به سرور
-                </button>
-            </form>
+            </div>
             
-            <div style="text-align: center; margin-top: 2rem;">
-                <p style="margin-bottom: 1rem; color: #94a3b8;">آیا حساب کاربری ندارید؟</p>
-                <button class="btn btn-secondary">
-                    <i class="fas fa-user-plus"></i> ساخت حساب کاربری
-                </button>
+            <!-- Rank 2 -->
+            <div class="rank-card">
+                <div class="rank-header">
+                    <div class="rank-name">Z 🔥</div>
+                    <div class="rank-price">قیمت: 120 هزار تومان</div>
+                </div>
+                <div class="rank-body">
+                    <ul class="rank-features">
+                        <li><i class="fas fa-check-circle"></i> دسترسی به /glow</li>
+                        <li><i class="fas fa-check-circle"></i> شغل سوات به مدت 30 روز</li>
+                        <li><i class="fas fa-check-circle"></i> دسترسی به /craft</li>
+                        <li><i class="fas fa-check-circle"></i> کیت Z</li>
+                    </ul>
+                    <button class="rank-btn">خرید رنک</button>
+                    
+                    <div class="rank-details">
+                        <h4>جزئیات بیشتر:</h4>
+                        <ul>
+                            <li>100 هزار سکه درون سرور</li>
+                            <li>دسترسی به /hat</li>
+                            <li>اولویت دوم در تپ لیست</li>
+                            <li>دسترسی به کیت‌های ویژه</li>
+                            <li>پشتیبانی اختصاصی</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Rank 3 -->
+            <div class="rank-card">
+                <div class="rank-header">
+                    <div class="rank-name">Older ⛰️</div>
+                    <div class="rank-price">قیمت: 80 هزار تومان</div>
+                </div>
+                <div class="rank-body">
+                    <ul class="rank-features">
+                        <li><i class="fas fa-check-circle"></i> دسترسی به /craft</li>
+                        <li><i class="fas fa-check-circle"></i> فروش 10 آیتم در حراجی</li>
+                        <li><i class="fas fa-check-circle"></i> کیت Older</li>
+                        <li><i class="fas fa-check-circle"></i> شغل مافیا به مدت 10 روز</li>
+                    </ul>
+                    <button class="rank-btn">خرید رنک</button>
+                    
+                    <div class="rank-details">
+                        <h4>جزئیات بیشتر:</h4>
+                        <ul>
+                            <li>80 هزار سکه درون سرور</li>
+                            <li>دسترسی به /hat</li>
+                            <li>اولویت سوم در تپ لیست</li>
+                            <li>دسترسی به کیت‌های عمومی</li>
+                            <li>پشتیبانی استاندارد</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1202,21 +1241,35 @@
                 
                 // Scroll to top
                 window.scrollTo(0, 0);
+                
+                // Close mobile menu if open
+                document.getElementById('mobileMenu').classList.remove('active');
             });
         });
         
-        // Form submission
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const server = document.getElementById('server').value;
-            
-            alert(`در حال اتصال به سرور ${server} با نام کاربری ${username}...`);
+        // Hamburger menu toggle
+        document.getElementById('hamburgerMenu').addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.toggle('active');
         });
         
         // Connect button
-        document.querySelector('.btn-primary').addEventListener('click', () => {
+        document.getElementById('connectBtn').addEventListener('click', () => {
             alert('در حال اتصال به سرور... آدرس: play.zcraft.ir');
+        });
+        
+        // Buy rank button
+        document.getElementById('buyRankBtn').addEventListener('click', () => {
+            document.querySelectorAll('.nav-link').forEach(l => {
+                l.classList.remove('active');
+            });
+            document.querySelector('[data-page="ranks"]').classList.add('active');
+            
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById('ranks').classList.add('active');
+            
+            window.scrollTo(0, 0);
         });
         
         // Rank buttons
@@ -1227,62 +1280,27 @@
             });
         });
         
-        // Keep Minecraft icons within viewport and avoid content
-        function keepIconsInViewport() {
-            const icons = document.querySelectorAll('.minecraft-icon');
+        // Keep bubbles within viewport
+        function keepBubblesInViewport() {
+            const bubbles = document.querySelectorAll('.bubble');
             const viewportWidth = window.innerWidth;
             const viewportHeight = window.innerHeight;
             
-            icons.forEach(icon => {
-                const rect = icon.getBoundingClientRect();
+            bubbles.forEach(bubble => {
+                const rect = bubble.getBoundingClientRect();
                 
-                // Reposition if overlapping with header
-                if (rect.top < 100) {
-                    icon.style.top = `${Math.random() * (viewportHeight - 200) + 100}px`;
-                }
-                
-                // Reposition if overlapping with content
-                const contentRects = document.querySelectorAll('.page.active > *');
-                let reposition = false;
-                
-                contentRects.forEach(content => {
-                    const contentRect = content.getBoundingClientRect();
-                    if (
-                        rect.left < contentRect.right &&
-                        rect.right > contentRect.left &&
-                        rect.top < contentRect.bottom &&
-                        rect.bottom > contentRect.top
-                    ) {
-                        reposition = true;
-                    }
-                });
-                
-                if (reposition) {
-                    icon.style.left = `${Math.random() * (viewportWidth - 100)}px`;
-                    icon.style.top = `${Math.random() * (viewportHeight - 200) + 100}px`;
-                }
-                
-                // Ensure icons stay within viewport
+                // Reposition if outside viewport
                 if (rect.left < 0 || rect.right > viewportWidth || rect.top < 0 || rect.bottom > viewportHeight) {
-                    icon.style.left = `${Math.random() * (viewportWidth - 100)}px`;
-                    icon.style.top = `${Math.random() * (viewportHeight - 200) + 100}px`;
+                    bubble.style.left = `${Math.random() * (viewportWidth - 100)}px`;
                 }
             });
             
             // Check periodically
-            setTimeout(keepIconsInViewport, 2000);
+            setTimeout(keepBubblesInViewport, 2000);
         }
         
-        // Initialize icon position checker
-        keepIconsInViewport();
-        
-        // Make icons move faster on mobile
-        if (window.innerWidth <= 768) {
-            const icons = document.querySelectorAll('.minecraft-icon');
-            icons.forEach(icon => {
-                icon.style.animation = 'floatMinecraftFast 6s infinite ease-in-out';
-            });
-        }
+        // Initialize bubble position checker
+        keepBubblesInViewport();
     </script>
 </body>
 </html>
