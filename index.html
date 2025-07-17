@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&family=Samim:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* متغیرهای رنگی و استایل‌ها */
         :root {
             --primary: #4361ee;
             --secondary: #f72585;
@@ -22,6 +21,9 @@
             --glass-bg: rgba(15, 23, 42, 0.65);
             --glass-border: rgba(255, 255, 255, 0.1);
             --admin-color: #f72585;
+            --samurai-red: #e63946;
+            --samurai-dark: #1d3557;
+            --japan-red: #e41c23;
         }
         
         * {
@@ -54,7 +56,6 @@
             z-index: -1;
         }
         
-        /* پس زمینه متحرک */
         .animated-bg {
             position: fixed;
             top: 0;
@@ -74,7 +75,6 @@
             100% { background-position: 0% 50%; }
         }
         
-        /* هدر و ناوبری */
         .header {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
@@ -175,7 +175,6 @@
             animation: glow 2s infinite alternate;
         }
         
-        /* منوی موبایل */
         .hamburger-menu {
             display: none;
             cursor: pointer;
@@ -235,7 +234,6 @@
             color: var(--accent);
         }
         
-        /* صفحات */
         .page {
             min-height: 100vh;
             padding: var(--section-padding);
@@ -247,7 +245,6 @@
             display: block;
         }
         
-        /* صفحه اصلی */
         .hero {
             padding: 2rem;
             text-align: center;
@@ -373,7 +370,6 @@
             border-radius: 2px;
         }
         
-        /* ویژگی‌ها */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -438,7 +434,6 @@
             line-height: 1.7;
         }
         
-        /* رنک‌ها */
         .ranks-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -468,7 +463,7 @@
         .rank-header {
             padding: 1.5rem;
             text-align: center;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: linear-gradient(135deg, var(--samurai-dark), var(--japan-red));
             color: white;
         }
         
@@ -512,7 +507,7 @@
             position: absolute;
             top: 15px;
             left: 15px;
-            background: var(--secondary);
+            background: var(--japan-red);
             color: white;
             padding: 5px 10px;
             border-radius: 20px;
@@ -541,7 +536,7 @@
         }
         
         .rank-features li i {
-            color: var(--accent);
+            color: var(--japan-red);
             min-width: 20px;
         }
         
@@ -549,7 +544,7 @@
             display: block;
             width: 100%;
             padding: 0.9rem;
-            background: linear-gradient(135deg, var(--secondary), #e01e69);
+            background: linear-gradient(135deg, var(--japan-red), #c1121f);
             border: none;
             border-radius: 12px;
             color: white;
@@ -558,7 +553,7 @@
             cursor: pointer;
             transition: all 0.4s;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(247, 37, 133, 0.3);
+            box-shadow: 0 5px 15px rgba(228, 28, 35, 0.3);
             position: relative;
             overflow: hidden;
             z-index: 1;
@@ -582,12 +577,11 @@
         }
         
         .rank-btn:hover {
-            background: linear-gradient(135deg, #e01e69, var(--secondary));
+            background: linear-gradient(135deg, #c1121f, var(--japan-red));
             transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(247, 37, 133, 0.5);
+            box-shadow: 0 8px 20px rgba(228, 28, 35, 0.5);
         }
         
-        /* مدال رنک */
         .rank-modal {
             display: none;
             position: fixed;
@@ -650,10 +644,9 @@
             content: '•';
             position: absolute;
             right: -1.5rem;
-            color: var(--accent);
+            color: var(--japan-red);
         }
         
-        /* صفحه حساب کاربری */
         .account-container {
             max-width: 500px;
             margin: 0 auto;
@@ -720,43 +713,6 @@
             text-decoration: underline;
         }
         
-        .code-group {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        
-        .code-input {
-            width: 50px;
-            height: 50px;
-            text-align: center;
-            font-size: 1.2rem;
-            border-radius: 10px;
-            border: 1px solid rgba(67, 97, 238, 0.3);
-            background: rgba(15, 23, 42, 0.4);
-            color: white;
-        }
-        
-        .timer {
-            text-align: center;
-            margin: 15px 0;
-            color: #94a3b8;
-        }
-        
-        .resend-code {
-            text-align: center;
-            color: var(--accent);
-            cursor: pointer;
-            font-weight: 600;
-        }
-        
-        .resend-code.disabled {
-            color: #94a3b8;
-            cursor: not-allowed;
-        }
-        
-        /* صفحه پروفایل */
         .profile-card {
             background: var(--glass-bg);
             border-radius: 20px;
@@ -777,7 +733,7 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            background: linear-gradient(135deg, var(--samurai-dark), var(--japan-red));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -792,7 +748,7 @@
         }
         
         .admin-badge {
-            background: var(--admin-color);
+            background: var(--japan-red);
             color: white;
             padding: 3px 10px;
             border-radius: 20px;
@@ -842,7 +798,6 @@
             box-shadow: 0 8px 20px rgba(255, 82, 82, 0.4);
         }
         
-        /* صفحه قوانین */
         .rules-container {
             max-width: 800px;
             margin: 0 auto;
@@ -861,9 +816,18 @@
         .rule-category h3 {
             font-size: 1.8rem;
             margin-bottom: 1.5rem;
-            color: var(--accent);
-            border-bottom: 2px solid var(--accent);
+            color: var(--japan-red);
+            border-bottom: 2px solid var(--japan-red);
             padding-bottom: 10px;
+            position: relative;
+        }
+        
+        .rule-category h3:after {
+            content: "⚔️";
+            position: absolute;
+            right: -35px;
+            top: 0;
+            font-size: 1.5rem;
         }
         
         .rules-list {
@@ -885,22 +849,25 @@
         }
         
         .rules-list li i {
-            color: var(--accent);
+            color: var(--japan-red);
             margin-top: 5px;
         }
         
         .admin-controls {
-            background: rgba(247, 37, 133, 0.1);
+            background: rgba(228, 28, 35, 0.1);
             border-radius: 10px;
             padding: 1.5rem;
             margin-top: 2rem;
-            border: 1px solid var(--admin-color);
+            border: 1px solid var(--japan-red);
             display: none;
         }
         
         .admin-controls h4 {
-            color: var(--admin-color);
+            color: var(--japan-red);
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .admin-btns {
@@ -912,20 +879,22 @@
         .admin-btn {
             padding: 0.7rem 1.2rem;
             border-radius: 8px;
-            background: var(--admin-color);
+            background: var(--japan-red);
             color: white;
             border: none;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .admin-btn:hover {
-            background: #d81b60;
+            background: #c1121f;
             transform: translateY(-3px);
         }
         
-        /* فوتر */
         .footer {
             background: rgba(15, 23, 42, 0.9);
             padding: 2rem;
@@ -969,7 +938,93 @@
             font-size: 0.9rem;
         }
         
-        /* انیمیشن‌ها */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(15, 23, 42, 0.3);
+            border-radius: 20px;
+            border: 2px dashed var(--glass-border);
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            color: var(--japan-red);
+            margin-bottom: 1.5rem;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--japan-red);
+        }
+        
+        .empty-state p {
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .blog-card {
+            background: var(--glass-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            z-index: 1;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .blog-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .blog-excerpt {
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        .blog-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.4); }
             70% { box-shadow: 0 0 0 15px rgba(67, 97, 238, 0); }
@@ -986,7 +1041,6 @@
             100% { text-shadow: 0 0 20px rgba(67, 97, 238, 0.7); }
         }
         
-        /* واکنش‌گرا */
         @media (max-width: 992px) {
             .hero-title {
                 font-size: 2.8rem;
@@ -1060,17 +1114,14 @@
     </style>
 </head>
 <body>
-    <!-- پس زمینه متحرک -->
     <div class="animated-bg"></div>
     
-    <!-- منوی همبرگری -->
     <div class="hamburger-menu" id="hamburgerMenu">
         <div></div>
         <div></div>
         <div></div>
     </div>
     
-    <!-- منوی موبایل -->
     <div class="mobile-menu" id="mobileMenu">
         <ul>
             <li><a href="#" class="nav-link active" data-page="home">خانه</a></li>
@@ -1081,7 +1132,6 @@
         </ul>
     </div>
     
-    <!-- هدر -->
     <header class="header">
         <div class="logo-container">
             <div class="logo">
@@ -1103,7 +1153,6 @@
         </div>
     </header>
     
-    <!-- صفحه اصلی -->
     <section id="home" class="page active">
         <div class="hero">
             <h1 class="hero-title">تجربه‌ای متفاوت در ماینکرفت</h1>
@@ -1149,74 +1198,36 @@
             </div>
         </div>
         
-        <!-- هشدار مطالعه قوانین -->
-        <div class="rule-alert">
-            <div class="feature-card" style="margin-top: 3rem; background: rgba(247, 37, 133, 0.1); border: 1px solid rgba(247, 37, 133, 0.3);">
-                <div class="feature-icon" style="background: rgba(247, 37, 133, 0.1); color: var(--secondary);">
-                    <i class="fas fa-exclamation-triangle"></i>
-                </div>
-                <h3 style="color: var(--secondary);">توجه!</h3>
-                <p>قبل از پلی دادن حتماً <a href="#" class="form-switch" data-page="rules">قوانین سرور</a> را مطالعه کنید</p>
+        <div class="feature-card" style="margin-top: 3rem; background: rgba(247, 37, 133, 0.1); border: 1px solid rgba(247, 37, 133, 0.3);">
+            <div class="feature-icon" style="background: rgba(247, 37, 133, 0.1); color: var(--secondary);">
+                <i class="fas fa-exclamation-triangle"></i>
             </div>
+            <h3 style="color: var(--secondary);">توجه!</h3>
+            <p>قبل از پلی دادن حتماً <a href="#" class="form-switch" data-page="rules">قوانین سرور</a> را مطالعه کنید</p>
         </div>
     </section>
     
-    <!-- صفحه وبلاگ -->
     <section id="blog" class="page">
         <div class="section-title">وبلاگ سرور</div>
         
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-newspaper"></i>
-                </div>
-                <h3>آخرین اخبار</h3>
-                <p>آپدیت جدید سرور با ویژگی‌های منحصر به فرد منتشر شد</p>
-                <button class="btn btn-secondary" style="margin-top: 20px;">
-                    مطالعه بیشتر
-                </button>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-calendar-alt"></i>
-                </div>
-                <h3>رویدادهای پیش‌رو</h3>
-                <p>مسابقات هفتگی با جوایز نفیس برای برندگان</p>
-                <button class="btn btn-secondary" style="margin-top: 20px;">
-                    مشاهده رویدادها
-                </button>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <i class="fas fa-trophy"></i>
-                </div>
-                <h3>مسابقات هفتگی</h3>
-                <p>شرکت در مسابقات و برنده شدن جایزه‌های ویژه</p>
-                <button class="btn btn-secondary" style="margin-top: 20px;">
-                    ثبت نام در مسابقه
-                </button>
-            </div>
+        <div class="empty-state">
+            <i class="fas fa-newspaper"></i>
+            <h3>هنوز پستی وجود ندارد</h3>
+            <p>ادمین‌های سرور می‌توانند محتوای جدید در این بخش اضافه کنند</p>
         </div>
         
-        <!-- کنترل‌های ادمین -->
         <div id="blogAdminControls" class="admin-controls">
             <h4><i class="fas fa-user-shield"></i> کنترل‌های ادمین</h4>
             <div class="admin-btns">
                 <button class="admin-btn" id="addBlogBtn"><i class="fas fa-plus"></i> افزودن پست جدید</button>
-                <button class="admin-btn" id="editBlogBtn"><i class="fas fa-edit"></i> ویرایش پست‌ها</button>
-                <button class="admin-btn" id="deleteBlogBtn"><i class="fas fa-trash"></i> حذف پست‌ها</button>
             </div>
         </div>
     </section>
     
-    <!-- صفحه فروشگاه رنک‌ها -->
     <section id="ranks" class="page">
         <div class="section-title">فروشگاه رنک‌ها</div>
         
         <div class="ranks-grid">
-            <!-- رنک 1 -->
             <div class="rank-card">
                 <div class="discount-badge">تخفیف 50%</div>
                 <div class="rank-header">
@@ -1240,7 +1251,6 @@
                 </div>
             </div>
             
-            <!-- رنک 2 -->
             <div class="rank-card">
                 <div class="rank-header">
                     <div class="rank-name">
@@ -1260,7 +1270,6 @@
                 </div>
             </div>
             
-            <!-- رنک 3 -->
             <div class="rank-card">
                 <div class="rank-header">
                     <div class="rank-name">
@@ -1280,7 +1289,6 @@
                 </div>
             </div>
             
-            <!-- رنک جدید -->
             <div class="rank-card">
                 <div class="discount-badge">جدید!</div>
                 <div class="rank-header">
@@ -1302,7 +1310,6 @@
             </div>
         </div>
         
-        <!-- کنترل‌های ادمین -->
         <div id="ranksAdminControls" class="admin-controls">
             <h4><i class="fas fa-user-shield"></i> کنترل‌های ادمین</h4>
             <div class="admin-btns">
@@ -1313,70 +1320,28 @@
         </div>
     </section>
     
-    <!-- صفحه قوانین -->
     <section id="rules" class="page">
         <div class="section-title">قوانین سرور</div>
         
         <div class="rules-container">
-            <div class="rule-category">
-                <h3>قوانین عمومی</h3>
-                <ul class="rules-list">
-                    <li><i class="fas fa-ban"></i> هرگونه توهین، فحاشی و بی‌احترامی به دیگر بازیکنان ممنوع است.</li>
-                    <li><i class="fas fa-ban"></i> استفاده از هرگونه کلاینت، ماد یا اسکریپت غیرمجاز که امتیاز ناعادلانه ایجاد کند ممنوع است.</li>
-                    <li><i class="fas fa-ban"></i> تبلیغ سرور‌های دیگر یا لینک‌های نامربوط ممنوع است.</li>
-                    <li><i class="fas fa-ban"></i> سوءاستفاده از باگ‌های سرور ممنوع است و باید به مدیریت گزارش شود.</li>
-                </ul>
+            <div class="empty-state">
+                <i class="fas fa-book"></i>
+                <h3>قوانین سرور در حال آماده‌سازی است</h3>
+                <p>ادمین‌ها می‌توانند قوانین سرور را در این بخش تنظیم کنند</p>
             </div>
             
-            <div class="rule-category">
-                <h3>قوانین نقش‌آفرینی</h3>
-                <ul class="rules-list">
-                    <li><i class="fas fa-user"></i> حفظ نقش شخصیت در تمامی تعاملات الزامی است.</li>
-                    <li><i class="fas fa-gem"></i> دزدی از دیگر بازیکنان فقط در شرایط نقش‌آفرینی و با رعایت قوانین مجاز است.</li>
-                    <li><i class="fas fa-fist-raised"></i> PvP فقط در مناطق مشخص شده و با رضایت طرفین مجاز است.</li>
-                    <li><i class="fas fa-home"></i> تخریب اموال دیگران بدون دلیل نقش‌آفرینی معتبر ممنوع است.</li>
-                </ul>
-            </div>
-            
-            <div class="rule-category">
-                <h3>قوانین چت و ارتباطات</h3>
-                <ul class="rules-list">
-                    <li><i class="fas fa-comment-slash"></i> اسپم کردن در سرور و ایجاد اختلال در چت بازی منجر به 2 روز میوت شما می‌شود.</li>
-                    <li><i class="fas fa-microphone-slash"></i> سوءاستفاده از ویس چت منجر به 80 دقیقه ادمین جیل می‌شود.</li>
-                    <li><i class="fas fa-comments"></i> درخواست مکرر برای دریافت رنک یا آیتم منجر به 30 دقیقه ادمین جیل می‌شود.</li>
-                </ul>
-            </div>
-            
-            <div class="rule-category">
-                <h3>قوانین بازی و گیم پلی</h3>
-                <ul class="rules-list">
-                    <li><i class="fas fa-skull-crossbones"></i> چیت زدن منجر به بن 10 روزه شما از سرور می‌شود.</li>
-                    <li><i class="fas fa-fire"></i> گریف دادن به سرور منجر به بن دائمی آیپی می‌شود.</li>
-                    <li><i class="fas fa-user-slash"></i> کیل فارم منجر به ادمین جیل می‌شود.</li>
-                    <li><i class="fas fa-building"></i> ساخت و ساز بدون فعالیت منجر به حذف زمین می‌شود.</li>
-                    <li><i class="fas fa-crown"></i> سوءاستفاده از رنک و پرمیشن‌ها منجر به 3 روز محرومیت و 60 دقیقه ادمین جیل می‌شود.</li>
-                    <li><i class="fas fa-money-bill-wave"></i> اسکم و کلاهبرداری بالای 200 هزار پول منجر به 70 دقیقه ادمین جیل می‌شود.</li>
-                    <li><i class="fas fa-gamepad"></i> به هم ریختن روند آرپی منجر به 60 دقیقه ادمین جیل می‌شود.</li>
-                    <li><i class="fas fa-sign-out-alt"></i> کامبت لاگین منجر به 60 دقیقه ادمین جیل می‌شود.</li>
-                </ul>
-            </div>
-            
-            <!-- کنترل‌های ادمین -->
             <div id="rulesAdminControls" class="admin-controls">
                 <h4><i class="fas fa-user-shield"></i> کنترل‌های ادمین</h4>
                 <div class="admin-btns">
                     <button class="admin-btn" id="addRuleBtn"><i class="fas fa-plus"></i> افزودن قانون جدید</button>
                     <button class="admin-btn" id="editRuleBtn"><i class="fas fa-edit"></i> ویرایش قوانین</button>
-                    <button class="admin-btn" id="deleteRuleBtn"><i class="fas fa-trash"></i> حذف قوانین</button>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- صفحه حساب کاربری -->
     <section id="account" class="page">
         <div class="account-container">
-            <!-- فرم ورود -->
             <div class="form-container" id="loginForm">
                 <h2 class="form-title">ورود به حساب کاربری</h2>
                 <div class="form-group">
@@ -1400,7 +1365,6 @@
                 </div>
             </div>
             
-            <!-- صفحه پروفایل -->
             <div class="profile-card" id="profilePage" style="display: none;">
                 <div class="profile-header">
                     <div class="profile-avatar">
@@ -1428,7 +1392,6 @@
                 <button class="change-password-btn" id="changePasswordBtn">تغییر رمز عبور</button>
                 <button class="logout-btn" id="logoutBtn">خروج از حساب کاربری</button>
                 
-                <!-- کنترل‌های ادمین -->
                 <div id="accountAdminControls" class="admin-controls">
                     <h4><i class="fas fa-user-shield"></i> کنترل‌های ادمین</h4>
                     <div class="admin-btns">
@@ -1440,7 +1403,6 @@
         </div>
     </section>
     
-    <!-- مدال رنک -->
     <div class="rank-modal" id="rankModal">
         <div class="rank-modal-content">
             <span class="close-modal" id="closeModal">&times;</span>
@@ -1458,7 +1420,6 @@
         </div>
     </div>
     
-    <!-- فوتر -->
     <footer class="footer">
         <div class="social-links">
             <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
@@ -1470,7 +1431,6 @@
         <p class="copyright">© 2025 تمامی حقوق محفوظ است</p>
     </footer>
     
-    <!-- موزیک پس‌زمینه -->
     <audio autoplay loop id="bgMusic">
         <source src="https://dl.sedatoseda.com/sound/Music-Minecraft%20(4).mp3" type="audio/mpeg">
     </audio>
@@ -1568,61 +1528,26 @@
             }
         ];
 
-        // پست‌های وبلاگ
-        let blogPosts = [
-            { id: 1, title: 'آپدیت جدید سرور', content: 'آپدیت جدید سرور با ویژگی‌های منحصر به فرد منتشر شد...' },
-            { id: 2, title: 'مسابقات هفتگی', content: 'مسابقات هفتگی با جوایز نفیس برای برندگان...' },
-            { id: 3, title: 'رویدادهای پیش‌رو', content: 'رویدادهای پیش‌رو در سرور زد کرفت...' }
-        ];
-
-        // قوانین سرور
-        let serverRules = [
-            { 
-                category: 'قوانین عمومی',
-                rules: [
-                    'هرگونه توهین، فحاشی و بی‌احترامی به دیگر بازیکنان ممنوع است.',
-                    'استفاده از هرگونه کلاینت، ماد یا اسکریپت غیرمجاز که امتیاز ناعادلانه ایجاد کند ممنوع است.',
-                    'تبلیغ سرور‌های دیگر یا لینک‌های نامربوط ممنوع است.',
-                    'سوءاستفاده از باگ‌های سرور ممنوع است و باید به مدیریت گزارش شود.'
-                ]
-            },
-            { 
-                category: 'قوانین نقش‌آفرینی',
-                rules: [
-                    'حفظ نقش شخصیت در تمامی تعاملات الزامی است.',
-                    'دزدی از دیگر بازیکنان فقط در شرایط نقش‌آفرینی و با رعایت قوانین مجاز است.',
-                    'PvP فقط در مناطق مشخص شده و با رضایت طرفین مجاز است.',
-                    'تخریب اموال دیگران بدون دلیل نقش‌آفرینی معتبر ممنوع است.'
-                ]
-            }
-        ];
-
         // ناوبری صفحات
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                // حذف کلاس active از همه لینک‌ها
                 document.querySelectorAll('.nav-link').forEach(l => {
                     l.classList.remove('active');
                 });
                 
-                // افزودن کلاس active به لینک کلیک شده
                 this.classList.add('active');
                 
-                // مخفی کردن همه صفحات
                 document.querySelectorAll('.page').forEach(page => {
                     page.classList.remove('active');
                 });
                 
-                // نمایش صفحه هدف
                 const targetPage = this.getAttribute('data-page');
                 document.getElementById(targetPage).classList.add('active');
                 
-                // اسکرول به بالا
                 window.scrollTo(0, 0);
                 
-                // بستن منوی موبایل در صورت باز بودن
                 document.getElementById('mobileMenu').classList.remove('active');
             });
         });
