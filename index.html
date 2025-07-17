@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&family=Samim:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* متغیرهای رنگی و استایل‌ها */
         :root {
             --primary: #4361ee;
             --secondary: #f72585;
@@ -20,6 +21,7 @@
             --section-padding: 80px 20px;
             --glass-bg: rgba(15, 23, 42, 0.65);
             --glass-border: rgba(255, 255, 255, 0.1);
+            --admin-color: #f72585;
         }
         
         * {
@@ -52,7 +54,7 @@
             z-index: -1;
         }
         
-        /* Animated Background */
+        /* پس زمینه متحرک */
         .animated-bg {
             position: fixed;
             top: 0;
@@ -72,6 +74,7 @@
             100% { background-position: 0% 50%; }
         }
         
+        /* هدر و ناوبری */
         .header {
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
@@ -172,7 +175,7 @@
             animation: glow 2s infinite alternate;
         }
         
-        /* Hamburger Menu */
+        /* منوی موبایل */
         .hamburger-menu {
             display: none;
             cursor: pointer;
@@ -232,6 +235,7 @@
             color: var(--accent);
         }
         
+        /* صفحات */
         .page {
             min-height: 100vh;
             padding: var(--section-padding);
@@ -243,6 +247,7 @@
             display: block;
         }
         
+        /* صفحه اصلی */
         .hero {
             padding: 2rem;
             text-align: center;
@@ -337,6 +342,11 @@
             transform: translateY(-5px);
         }
         
+        .btn-admin {
+            background: linear-gradient(135deg, var(--admin-color), #c2185b);
+            color: white;
+        }
+        
         .section-title {
             text-align: center;
             font-size: 2.5rem;
@@ -363,6 +373,7 @@
             border-radius: 2px;
         }
         
+        /* ویژگی‌ها */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -427,6 +438,7 @@
             line-height: 1.7;
         }
         
+        /* رنک‌ها */
         .ranks-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -464,11 +476,49 @@
             font-size: 1.8rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .rank-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            border: 2px solid white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
         }
         
         .rank-price {
             font-size: 1.3rem;
             font-weight: 600;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            opacity: 0.7;
+            margin-left: 10px;
+        }
+        
+        .discounted-price {
+            color: #ffeb3b;
+            font-weight: bold;
+        }
+        
+        .discount-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 10;
         }
         
         .rank-body {
@@ -537,7 +587,7 @@
             box-shadow: 0 8px 20px rgba(247, 37, 133, 0.5);
         }
         
-        /* Modal for rank details */
+        /* مدال رنک */
         .rank-modal {
             display: none;
             position: fixed;
@@ -593,6 +643,7 @@
             padding: 0.5rem 0;
             color: #cbd5e1;
             position: relative;
+            margin-bottom: 0.5rem;
         }
         
         .rank-modal-body li:before {
@@ -602,7 +653,7 @@
             color: var(--accent);
         }
         
-        /* Account Page Styles */
+        /* صفحه حساب کاربری */
         .account-container {
             max-width: 500px;
             margin: 0 auto;
@@ -705,7 +756,7 @@
             cursor: not-allowed;
         }
         
-        /* Profile Page */
+        /* صفحه پروفایل */
         .profile-card {
             background: var(--glass-bg);
             border-radius: 20px;
@@ -740,6 +791,16 @@
             margin-bottom: 0.5rem;
         }
         
+        .admin-badge {
+            background: var(--admin-color);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        
         .profile-email {
             color: #94a3b8;
         }
@@ -763,8 +824,8 @@
             color: #cbd5e1;
         }
         
-        .change-password-btn {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+        .logout-btn {
+            background: linear-gradient(135deg, #ff5252, #d32f2f);
             color: white;
             padding: 0.8rem 1.5rem;
             border: none;
@@ -773,13 +834,98 @@
             cursor: pointer;
             transition: all 0.3s;
             width: 100%;
+            margin-top: 1rem;
         }
         
-        .change-password-btn:hover {
+        .logout-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+            box-shadow: 0 8px 20px rgba(255, 82, 82, 0.4);
         }
         
+        /* صفحه قوانین */
+        .rules-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .rule-category {
+            background: var(--glass-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+        
+        .rule-category h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+        
+        .rules-list {
+            list-style-type: none;
+        }
+        
+        .rules-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            font-size: 1.1rem;
+            color: #cbd5e1;
+        }
+        
+        .rules-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .rules-list li i {
+            color: var(--accent);
+            margin-top: 5px;
+        }
+        
+        .admin-controls {
+            background: rgba(247, 37, 133, 0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border: 1px solid var(--admin-color);
+            display: none;
+        }
+        
+        .admin-controls h4 {
+            color: var(--admin-color);
+            margin-bottom: 1rem;
+        }
+        
+        .admin-btns {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .admin-btn {
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            background: var(--admin-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .admin-btn:hover {
+            background: #d81b60;
+            transform: translateY(-3px);
+        }
+        
+        /* فوتر */
         .footer {
             background: rgba(15, 23, 42, 0.9);
             padding: 2rem;
@@ -823,7 +969,7 @@
             font-size: 0.9rem;
         }
         
-        /* Animations */
+        /* انیمیشن‌ها */
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.4); }
             70% { box-shadow: 0 0 0 15px rgba(67, 97, 238, 0); }
@@ -840,7 +986,7 @@
             100% { text-shadow: 0 0 20px rgba(67, 97, 238, 0.7); }
         }
         
-        /* Responsive Design */
+        /* واکنش‌گرا */
         @media (max-width: 992px) {
             .hero-title {
                 font-size: 2.8rem;
@@ -906,31 +1052,36 @@
                 gap: 1rem;
                 align-items: flex-start;
             }
+            
+            .admin-btns {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
+    <!-- پس زمینه متحرک -->
     <div class="animated-bg"></div>
     
-    <!-- Hamburger Menu -->
+    <!-- منوی همبرگری -->
     <div class="hamburger-menu" id="hamburgerMenu">
         <div></div>
         <div></div>
         <div></div>
     </div>
     
-    <!-- Mobile Menu -->
+    <!-- منوی موبایل -->
     <div class="mobile-menu" id="mobileMenu">
         <ul>
             <li><a href="#" class="nav-link active" data-page="home">خانه</a></li>
             <li><a href="#" class="nav-link" data-page="blog">وبلاگ</a></li>
             <li><a href="#" class="nav-link" data-page="ranks">فروشگاه</a></li>
+            <li><a href="#" class="nav-link" data-page="rules">قوانین</a></li>
             <li><a href="#" class="nav-link" data-page="account">حساب کاربری</a></li>
         </ul>
     </div>
     
-    <!-- Header -->
+    <!-- هدر -->
     <header class="header">
         <div class="logo-container">
             <div class="logo">
@@ -943,6 +1094,7 @@
             <a href="#" class="nav-link active" data-page="home">خانه</a>
             <a href="#" class="nav-link" data-page="blog">وبلاگ</a>
             <a href="#" class="nav-link" data-page="ranks">فروشگاه</a>
+            <a href="#" class="nav-link" data-page="rules">قوانین</a>
             <a href="#" class="nav-link" data-page="account">حساب کاربری</a>
         </div>
         
@@ -951,7 +1103,7 @@
         </div>
     </header>
     
-    <!-- Home Page -->
+    <!-- صفحه اصلی -->
     <section id="home" class="page active">
         <div class="hero">
             <h1 class="hero-title">تجربه‌ای متفاوت در ماینکرفت</h1>
@@ -962,6 +1114,9 @@
             <div class="hero-btns">
                 <button class="btn btn-secondary" id="buyRankBtn">
                     <i class="fas fa-crown"></i> خرید رنک
+                </button>
+                <button class="btn btn-primary" id="playNowBtn">
+                    <i class="fas fa-play"></i> بازی کن الان!
                 </button>
             </div>
         </div>
@@ -993,9 +1148,20 @@
                 <p>تیم توسعه همیشه در حال بهبود سرور و رفع مشکلات بازیکنان است</p>
             </div>
         </div>
+        
+        <!-- هشدار مطالعه قوانین -->
+        <div class="rule-alert">
+            <div class="feature-card" style="margin-top: 3rem; background: rgba(247, 37, 133, 0.1); border: 1px solid rgba(247, 37, 133, 0.3);">
+                <div class="feature-icon" style="background: rgba(247, 37, 133, 0.1); color: var(--secondary);">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3 style="color: var(--secondary);">توجه!</h3>
+                <p>قبل از پلی دادن حتماً <a href="#" class="form-switch" data-page="rules">قوانین سرور</a> را مطالعه کنید</p>
+            </div>
+        </div>
     </section>
     
-    <!-- Blog Page -->
+    <!-- صفحه وبلاگ -->
     <section id="blog" class="page">
         <div class="section-title">وبلاگ سرور</div>
         
@@ -1033,18 +1199,35 @@
                 </button>
             </div>
         </div>
+        
+        <!-- کنترل‌های ادمین -->
+        <div id="blogAdminControls" class="admin-controls">
+            <h4><i class="fas fa-user-shield"></i> کنترل‌های ادمین</h4>
+            <div class="admin-btns">
+                <button class="admin-btn" id="addBlogBtn"><i class="fas fa-plus"></i> افزودن پست جدید</button>
+                <button class="admin-btn" id="editBlogBtn"><i class="fas fa-edit"></i> ویرایش پست‌ها</button>
+                <button class="admin-btn" id="deleteBlogBtn"><i class="fas fa-trash"></i> حذف پست‌ها</button>
+            </div>
+        </div>
     </section>
     
-    <!-- Ranks Page -->
+    <!-- صفحه فروشگاه رنک‌ها -->
     <section id="ranks" class="page">
         <div class="section-title">فروشگاه رنک‌ها</div>
         
         <div class="ranks-grid">
-            <!-- Rank 1 -->
+            <!-- رنک 1 -->
             <div class="rank-card">
+                <div class="discount-badge">تخفیف 50%</div>
                 <div class="rank-header">
-                    <div class="rank-name">🥷 Z +</div>
-                    <div class="rank-price">قیمت: 200 هزار تومان</div>
+                    <div class="rank-name">
+                        <div class="rank-image" style="background-image: url('https://i.imgur.com/0b8F5yC.jpg')"></div>
+                        Z +
+                    </div>
+                    <div class="rank-price">
+                        <span class="original-price">200 هزار تومان</span>
+                        <span class="discounted-price">100 هزار تومان</span>
+                    </div>
                 </div>
                 <div class="rank-body">
                     <ul class="rank-features">
@@ -1057,10 +1240,13 @@
                 </div>
             </div>
             
-            <!-- Rank 2 -->
+            <!-- رنک 2 -->
             <div class="rank-card">
                 <div class="rank-header">
-                    <div class="rank-name">Z 🔥</div>
+                    <div class="rank-name">
+                        <div class="rank-image" style="background-image: url('https://i.imgur.com/7J9fYxG.jpg')"></div>
+                        Z Fire
+                    </div>
                     <div class="rank-price">قیمت: 120 هزار تومان</div>
                 </div>
                 <div class="rank-body">
@@ -1074,10 +1260,13 @@
                 </div>
             </div>
             
-            <!-- Rank 3 -->
+            <!-- رنک 3 -->
             <div class="rank-card">
                 <div class="rank-header">
-                    <div class="rank-name">Older ⛰️</div>
+                    <div class="rank-name">
+                        <div class="rank-image" style="background-image: url('https://i.imgur.com/4VrKjqB.jpg')"></div>
+                        Older
+                    </div>
                     <div class="rank-price">قیمت: 80 هزار تومان</div>
                 </div>
                 <div class="rank-body">
@@ -1090,13 +1279,104 @@
                     <button class="rank-btn" data-rank="older">خرید رنک</button>
                 </div>
             </div>
+            
+            <!-- رنک جدید -->
+            <div class="rank-card">
+                <div class="discount-badge">جدید!</div>
+                <div class="rank-header">
+                    <div class="rank-name">
+                        <div class="rank-image" style="background-image: url('https://i.imgur.com/2QjR7Ld.jpg')"></div>
+                        Dc
+                    </div>
+                    <div class="rank-price">قیمت: 30 هزار تومان</div>
+                </div>
+                <div class="rank-body">
+                    <ul class="rank-features">
+                        <li><i class="fas fa-check-circle"></i> /ah sell [8]</li>
+                        <li><i class="fas fa-check-circle"></i> Claim 50k In Roleplay</li>
+                        <li><i class="fas fa-check-circle"></i> Number 4 Of Tab</li>
+                        <li><i class="fas fa-check-circle"></i> Kit Dc</li>
+                    </ul>
+                    <button class="rank-btn" data-rank="dc">خرید رنک</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- کنترل‌های ادمین -->
+        <div id="ranksAdminControls" class="admin-controls">
+            <h4><i class="fas fa-user-shield"></i> کنترل‌های ادمین</h4>
+            <div class="admin-btns">
+                <button class="admin-btn" id="editRankBtn"><i class="fas fa-edit"></i> ویرایش رنک‌ها</button>
+                <button class="admin-btn" id="setDiscountBtn"><i class="fas fa-tag"></i> تنظیم تخفیف</button>
+                <button class="admin-btn" id="addRankBtn"><i class="fas fa-plus"></i> افزودن رنک جدید</button>
+            </div>
         </div>
     </section>
     
-    <!-- Account Page -->
+    <!-- صفحه قوانین -->
+    <section id="rules" class="page">
+        <div class="section-title">قوانین سرور</div>
+        
+        <div class="rules-container">
+            <div class="rule-category">
+                <h3>قوانین عمومی</h3>
+                <ul class="rules-list">
+                    <li><i class="fas fa-ban"></i> هرگونه توهین، فحاشی و بی‌احترامی به دیگر بازیکنان ممنوع است.</li>
+                    <li><i class="fas fa-ban"></i> استفاده از هرگونه کلاینت، ماد یا اسکریپت غیرمجاز که امتیاز ناعادلانه ایجاد کند ممنوع است.</li>
+                    <li><i class="fas fa-ban"></i> تبلیغ سرور‌های دیگر یا لینک‌های نامربوط ممنوع است.</li>
+                    <li><i class="fas fa-ban"></i> سوءاستفاده از باگ‌های سرور ممنوع است و باید به مدیریت گزارش شود.</li>
+                </ul>
+            </div>
+            
+            <div class="rule-category">
+                <h3>قوانین نقش‌آفرینی</h3>
+                <ul class="rules-list">
+                    <li><i class="fas fa-user"></i> حفظ نقش شخصیت در تمامی تعاملات الزامی است.</li>
+                    <li><i class="fas fa-gem"></i> دزدی از دیگر بازیکنان فقط در شرایط نقش‌آفرینی و با رعایت قوانین مجاز است.</li>
+                    <li><i class="fas fa-fist-raised"></i> PvP فقط در مناطق مشخص شده و با رضایت طرفین مجاز است.</li>
+                    <li><i class="fas fa-home"></i> تخریب اموال دیگران بدون دلیل نقش‌آفرینی معتبر ممنوع است.</li>
+                </ul>
+            </div>
+            
+            <div class="rule-category">
+                <h3>قوانین چت و ارتباطات</h3>
+                <ul class="rules-list">
+                    <li><i class="fas fa-comment-slash"></i> اسپم کردن در سرور و ایجاد اختلال در چت بازی منجر به 2 روز میوت شما می‌شود.</li>
+                    <li><i class="fas fa-microphone-slash"></i> سوءاستفاده از ویس چت منجر به 80 دقیقه ادمین جیل می‌شود.</li>
+                    <li><i class="fas fa-comments"></i> درخواست مکرر برای دریافت رنک یا آیتم منجر به 30 دقیقه ادمین جیل می‌شود.</li>
+                </ul>
+            </div>
+            
+            <div class="rule-category">
+                <h3>قوانین بازی و گیم پلی</h3>
+                <ul class="rules-list">
+                    <li><i class="fas fa-skull-crossbones"></i> چیت زدن منجر به بن 10 روزه شما از سرور می‌شود.</li>
+                    <li><i class="fas fa-fire"></i> گریف دادن به سرور منجر به بن دائمی آیپی می‌شود.</li>
+                    <li><i class="fas fa-user-slash"></i> کیل فارم منجر به ادمین جیل می‌شود.</li>
+                    <li><i class="fas fa-building"></i> ساخت و ساز بدون فعالیت منجر به حذف زمین می‌شود.</li>
+                    <li><i class="fas fa-crown"></i> سوءاستفاده از رنک و پرمیشن‌ها منجر به 3 روز محرومیت و 60 دقیقه ادمین جیل می‌شود.</li>
+                    <li><i class="fas fa-money-bill-wave"></i> اسکم و کلاهبرداری بالای 200 هزار پول منجر به 70 دقیقه ادمین جیل می‌شود.</li>
+                    <li><i class="fas fa-gamepad"></i> به هم ریختن روند آرپی منجر به 60 دقیقه ادمین جیل می‌شود.</li>
+                    <li><i class="fas fa-sign-out-alt"></i> کامبت لاگین منجر به 60 دقیقه ادمین جیل می‌شود.</li>
+                </ul>
+            </div>
+            
+            <!-- کنترل‌های ادمین -->
+            <div id="rulesAdminControls" class="admin-controls">
+                <h4><i class="fas fa-user-shield"></i> کنترل‌های ادمین</h4>
+                <div class="admin-btns">
+                    <button class="admin-btn" id="addRuleBtn"><i class="fas fa-plus"></i> افزودن قانون جدید</button>
+                    <button class="admin-btn" id="editRuleBtn"><i class="fas fa-edit"></i> ویرایش قوانین</button>
+                    <button class="admin-btn" id="deleteRuleBtn"><i class="fas fa-trash"></i> حذف قوانین</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- صفحه حساب کاربری -->
     <section id="account" class="page">
         <div class="account-container">
-            <!-- Login Form -->
+            <!-- فرم ورود -->
             <div class="form-container" id="loginForm">
                 <h2 class="form-title">ورود به حساب کاربری</h2>
                 <div class="form-group">
@@ -1120,85 +1400,7 @@
                 </div>
             </div>
             
-            <!-- Forgot Password Form -->
-            <div class="form-container" id="forgotPasswordForm" style="display: none;">
-                <h2 class="form-title">بازیابی رمز عبور</h2>
-                <div class="form-group">
-                    <label for="forgotEmail">ایمیل</label>
-                    <input type="email" id="forgotEmail" class="form-control" placeholder="ایمیل خود را وارد کنید">
-                </div>
-                
-                <button class="btn btn-primary" id="sendCodeBtn">ارسال کد تایید</button>
-                
-                <div class="form-footer" style="justify-content: center; margin-top: 1.5rem;">
-                    <span class="form-switch" id="backToLogin">بازگشت به صفحه ورود</span>
-                </div>
-            </div>
-            
-            <!-- Verification Code Form -->
-            <div class="form-container" id="verificationForm" style="display: none;">
-                <h2 class="form-title">تایید کد</h2>
-                <p style="text-align: center; margin-bottom: 1.5rem;">کد تایید ۵ رقمی به ایمیل شما ارسال شد</p>
-                
-                <div class="code-group">
-                    <input type="text" class="code-input" maxlength="1" autocomplete="off">
-                    <input type="text" class="code-input" maxlength="1" autocomplete="off">
-                    <input type="text" class="code-input" maxlength="1" autocomplete="off">
-                    <input type="text" class="code-input" maxlength="1" autocomplete="off">
-                    <input type="text" class="code-input" maxlength="1" autocomplete="off">
-                </div>
-                
-                <div class="timer">
-                    زمان باقیمانده: <span id="countdown">02:00</span>
-                </div>
-                
-                <p class="resend-code disabled" id="resendCodeBtn">ارسال مجدد کد</p>
-                
-                <button class="btn btn-primary" id="verifyCodeBtn" style="margin-top: 1.5rem;">تایید کد</button>
-                
-                <div class="form-footer" style="justify-content: center; margin-top: 1.5rem;">
-                    <span class="form-switch" id="editEmail">تصحیح ایمیل</span>
-                </div>
-            </div>
-            
-            <!-- Signup Form -->
-            <div class="form-container" id="signupForm" style="display: none;">
-                <h2 class="form-title">ایجاد حساب کاربری</h2>
-                <div class="form-group">
-                    <label for="signupEmail">ایمیل</label>
-                    <input type="email" id="signupEmail" class="form-control" placeholder="ایمیل خود را وارد کنید">
-                </div>
-                
-                <button class="btn btn-primary" id="sendSignupCodeBtn">ارسال کد تایید</button>
-                
-                <div class="form-footer" style="justify-content: center; margin-top: 1.5rem;">
-                    <span>حساب کاربری دارید؟ </span>
-                    <span class="form-switch" id="backToLogin2">وارد شوید</span>
-                </div>
-            </div>
-            
-            <!-- Set Password Form -->
-            <div class="form-container" id="setPasswordForm" style="display: none;">
-                <h2 class="form-title">ایجاد حساب کاربری</h2>
-                <div class="form-group">
-                    <label for="displayName">نام نمایشی</label>
-                    <input type="text" id="displayName" class="form-control" placeholder="نام نمایشی خود را وارد کنید">
-                </div>
-                
-                <div class="form-group">
-                    <label for="signupPassword">رمز عبور</label>
-                    <input type="password" id="signupPassword" class="form-control" placeholder="رمز عبور خود را وارد کنید">
-                </div>
-                
-                <div class="form-group">
-                    <label for="confirmPassword">تکرار رمز عبور</label>
-                    <input type="password" id="confirmPassword" class="form-control" placeholder="رمز عبور را تکرار کنید">
-                </div>
-                
-                <button class="btn btn-primary" id="createAccountBtn">ایجاد حساب</button>
-            </div>
-            
-            <!-- Profile Page -->
+            <!-- صفحه پروفایل -->
             <div class="profile-card" id="profilePage" style="display: none;">
                 <div class="profile-header">
                     <div class="profile-avatar">
@@ -1217,14 +1419,28 @@
                         <span class="detail-label">آخرین ورود:</span>
                         <span class="detail-value" id="lastLogin">هم اکنون</span>
                     </div>
+                    <div class="detail-item">
+                        <span class="detail-label">نوع حساب:</span>
+                        <span class="detail-value" id="accountType">کاربر عادی</span>
+                    </div>
                 </div>
                 
                 <button class="change-password-btn" id="changePasswordBtn">تغییر رمز عبور</button>
+                <button class="logout-btn" id="logoutBtn">خروج از حساب کاربری</button>
+                
+                <!-- کنترل‌های ادمین -->
+                <div id="accountAdminControls" class="admin-controls">
+                    <h4><i class="fas fa-user-shield"></i> کنترل‌های ادمین</h4>
+                    <div class="admin-btns">
+                        <button class="admin-btn" id="createUserBtn"><i class="fas fa-user-plus"></i> ایجاد کاربر جدید</button>
+                        <button class="admin-btn" id="manageUsersBtn"><i class="fas fa-users-cog"></i> مدیریت کاربران</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
     
-    <!-- Rank Modal -->
+    <!-- مدال رنک -->
     <div class="rank-modal" id="rankModal">
         <div class="rank-modal-content">
             <span class="close-modal" id="closeModal">&times;</span>
@@ -1242,7 +1458,7 @@
         </div>
     </div>
     
-    <!-- Footer -->
+    <!-- فوتر -->
     <footer class="footer">
         <div class="social-links">
             <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
@@ -1260,42 +1476,163 @@
     </audio>
     
     <script>
-        // Page navigation
+        // اطلاعات رنک‌ها
+        const rankDetails = {
+            'z-plus': {
+                name: 'Z +',
+                price: '100 هزار تومان',
+                originalPrice: '200 هزار تومان',
+                discount: '50% تخفیف',
+                details: [
+                    'دسترسی دائمی',
+                    'تمامی کیت‌های نقش‌آفرینی',
+                    'دسترسی به /anvil و /glow [Rainbow]',
+                    'امکان ایجاد گنگ',
+                    '/ah sell [40 Item]',
+                    '/tp و /teleport و /back',
+                    '/invsee [player] و /enderchest',
+                    '/craft',
+                    'Z + Kit [/kit]',
+                    'اولویت اول در تپ لیست',
+                    'Claim Gang For Ended Rank',
+                    'دسترسی به رنگ‌های چت: &1 &2 &3 &4 &5 &6 &7 &8 &9 &0 &f &l &n &g &j &h &e &b &c',
+                    'Claim 300k In Roleplay',
+                    '/hat',
+                    '/chestshop [30]'
+                ]
+            },
+            'z-fire': {
+                name: 'Z Fire',
+                price: '120 هزار تومان',
+                details: [
+                    'دسترسی به /glow [yellow - Red - Green]',
+                    '/ah sell [35 Item]',
+                    'Claim Job Swat [for 30d]',
+                    '/craft',
+                    'Z Kit [/kit]',
+                    'Claim 100k In Roleplay',
+                    'دسترسی به رنگ‌های چت: &1 &2 &3 &4 &5 &6 &7',
+                    'اولویت دوم در تپ لیست',
+                    'Kit Swat [/kit]',
+                    '/hat',
+                    '/chestshop [20]'
+                ]
+            },
+            'older': {
+                name: 'Older',
+                price: '80 هزار تومان',
+                details: [
+                    '/craft',
+                    '/ah sell [10]',
+                    'Claim 80k In Roleplay',
+                    '/hat',
+                    'اولویت سوم در تپ لیست',
+                    'Kit Older [/kit]',
+                    '/chestshop [10]',
+                    'Claim Mafia Job [For 10d]'
+                ]
+            },
+            'dc': {
+                name: 'Dc',
+                price: '30 هزار تومان',
+                details: [
+                    '/ah sell [8]',
+                    'Claim 50k In Roleplay',
+                    'اولویت چهارم در تپ لیست',
+                    'Kit Dc [/kit]',
+                    '/chestshop [8]',
+                    'Claim Job God Miner [3d]'
+                ]
+            }
+        };
+
+        // حساب‌های ادمین
+        const adminAccounts = [
+            { 
+                email: 'amir@zcraft.ir', 
+                password: 'ZCraft1582',
+                displayName: 'Amir',
+                isAdmin: true
+            },
+            { 
+                email: 'saamin@zcraft.ir', 
+                password: 'ZCraft1582',
+                displayName: 'Saamin',
+                isAdmin: true
+            },
+            { 
+                email: 'nqzme@zcraft.ir', 
+                password: 'ZCraft1582',
+                displayName: 'Nqzme',
+                isAdmin: true
+            }
+        ];
+
+        // پست‌های وبلاگ
+        let blogPosts = [
+            { id: 1, title: 'آپدیت جدید سرور', content: 'آپدیت جدید سرور با ویژگی‌های منحصر به فرد منتشر شد...' },
+            { id: 2, title: 'مسابقات هفتگی', content: 'مسابقات هفتگی با جوایز نفیس برای برندگان...' },
+            { id: 3, title: 'رویدادهای پیش‌رو', content: 'رویدادهای پیش‌رو در سرور زد کرفت...' }
+        ];
+
+        // قوانین سرور
+        let serverRules = [
+            { 
+                category: 'قوانین عمومی',
+                rules: [
+                    'هرگونه توهین، فحاشی و بی‌احترامی به دیگر بازیکنان ممنوع است.',
+                    'استفاده از هرگونه کلاینت، ماد یا اسکریپت غیرمجاز که امتیاز ناعادلانه ایجاد کند ممنوع است.',
+                    'تبلیغ سرور‌های دیگر یا لینک‌های نامربوط ممنوع است.',
+                    'سوءاستفاده از باگ‌های سرور ممنوع است و باید به مدیریت گزارش شود.'
+                ]
+            },
+            { 
+                category: 'قوانین نقش‌آفرینی',
+                rules: [
+                    'حفظ نقش شخصیت در تمامی تعاملات الزامی است.',
+                    'دزدی از دیگر بازیکنان فقط در شرایط نقش‌آفرینی و با رعایت قوانین مجاز است.',
+                    'PvP فقط در مناطق مشخص شده و با رضایت طرفین مجاز است.',
+                    'تخریب اموال دیگران بدون دلیل نقش‌آفرینی معتبر ممنوع است.'
+                ]
+            }
+        ];
+
+        // ناوبری صفحات
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                // Remove active class from all links
+                // حذف کلاس active از همه لینک‌ها
                 document.querySelectorAll('.nav-link').forEach(l => {
                     l.classList.remove('active');
                 });
                 
-                // Add active class to clicked link
+                // افزودن کلاس active به لینک کلیک شده
                 this.classList.add('active');
                 
-                // Hide all pages
+                // مخفی کردن همه صفحات
                 document.querySelectorAll('.page').forEach(page => {
                     page.classList.remove('active');
                 });
                 
-                // Show target page
+                // نمایش صفحه هدف
                 const targetPage = this.getAttribute('data-page');
                 document.getElementById(targetPage).classList.add('active');
                 
-                // Scroll to top
+                // اسکرول به بالا
                 window.scrollTo(0, 0);
                 
-                // Close mobile menu if open
+                // بستن منوی موبایل در صورت باز بودن
                 document.getElementById('mobileMenu').classList.remove('active');
             });
         });
-        
-        // Hamburger menu toggle
+
+        // منوی همبرگری
         document.getElementById('hamburgerMenu').addEventListener('click', function() {
             document.getElementById('mobileMenu').classList.toggle('active');
         });
-        
-        // Buy rank button
+
+        // دکمه خرید رنک
         document.getElementById('buyRankBtn').addEventListener('click', () => {
             document.querySelectorAll('.nav-link').forEach(l => {
                 l.classList.remove('active');
@@ -1309,64 +1646,21 @@
             
             window.scrollTo(0, 0);
         });
-        
-        // Rank modals
-        const rankDetails = {
-            'z-plus': {
-                name: '🥷 Z +',
-                price: '200 هزار تومان',
-                details: [
-                    'دسترسی دائمی',
-                    'تمامی کیت‌های نقش‌آفرینی',
-                    'دسترسی به /anvil و /glow',
-                    'امکان ایجاد گنگ',
-                    '300 هزار سکه درون سرور',
-                    'دسترسی به /hat و /chestshop',
-                    'اولویت در تپ لیست',
-                    'دسترسی به تمامی دستورات ویژه',
-                    'پشتیبانی اختصاصی'
-                ]
-            },
-            'z-fire': {
-                name: 'Z 🔥',
-                price: '120 هزار تومان',
-                details: [
-                    'دسترسی به /glow',
-                    'شغل سوات به مدت 30 روز',
-                    'دسترسی به /craft',
-                    'کیت Z',
-                    '100 هزار سکه درون سرور',
-                    'دسترسی به /hat',
-                    'اولویت دوم در تپ لیست',
-                    'دسترسی به کیت‌های ویژه',
-                    'پشتیبانی اختصاصی'
-                ]
-            },
-            'older': {
-                name: 'Older ⛰️',
-                price: '80 هزار تومان',
-                details: [
-                    'دسترسی به /craft',
-                    'فروش 10 آیتم در حراجی',
-                    'کیت Older',
-                    'شغل مافیا به مدت 10 روز',
-                    '80 هزار سکه درون سرور',
-                    'دسترسی به /hat',
-                    'اولویت سوم در تپ لیست',
-                    'دسترسی به کیت‌های عمومی',
-                    'پشتیبانی استاندارد'
-                ]
-            }
-        };
-        
-        // Open rank modal
+
+        // باز کردن مدال رنک
         document.querySelectorAll('.rank-btn').forEach(button => {
             button.addEventListener('click', function() {
                 const rankId = this.getAttribute('data-rank');
                 const rank = rankDetails[rankId];
                 
                 document.getElementById('modalRankName').textContent = rank.name;
-                document.getElementById('modalRankPrice').textContent = `قیمت: ${rank.price}`;
+                
+                if (rank.originalPrice) {
+                    document.getElementById('modalRankPrice').innerHTML = 
+                        `قیمت: <span class="original-price">${rank.originalPrice}</span> <span class="discounted-price">${rank.price}</span>`;
+                } else {
+                    document.getElementById('modalRankPrice').textContent = `قیمت: ${rank.price}`;
+                }
                 
                 const detailsList = document.getElementById('modalRankDetails');
                 detailsList.innerHTML = '';
@@ -1380,235 +1674,130 @@
                 document.getElementById('rankModal').style.display = 'flex';
             });
         });
-        
-        // Close rank modal
+
+        // بستن مدال رنک
         document.getElementById('closeModal').addEventListener('click', function() {
             document.getElementById('rankModal').style.display = 'none';
         });
-        
-        // Close modal when clicking outside
+
+        // بستن مدال با کلیک خارج از آن
         window.addEventListener('click', function(event) {
             if (event.target === document.getElementById('rankModal')) {
                 document.getElementById('rankModal').style.display = 'none';
             }
         });
-        
-        // Account system
+
+        // سیستم حساب کاربری
         const loginForm = document.getElementById('loginForm');
-        const forgotPasswordForm = document.getElementById('forgotPasswordForm');
-        const verificationForm = document.getElementById('verificationForm');
-        const signupForm = document.getElementById('signupForm');
-        const setPasswordForm = document.getElementById('setPasswordForm');
         const profilePage = document.getElementById('profilePage');
         
-        // Show forgot password form
-        document.getElementById('showForgotPassword').addEventListener('click', function() {
-            loginForm.style.display = 'none';
-            forgotPasswordForm.style.display = 'block';
-        });
-        
-        // Back to login from forgot password
-        document.getElementById('backToLogin').addEventListener('click', function() {
-            forgotPasswordForm.style.display = 'none';
-            loginForm.style.display = 'block';
-        });
-        
-        // Show signup form
-        document.getElementById('showSignup').addEventListener('click', function() {
-            loginForm.style.display = 'none';
-            signupForm.style.display = 'block';
-        });
-        
-        // Back to login from signup
-        document.getElementById('backToLogin2').addEventListener('click', function() {
-            signupForm.style.display = 'none';
-            loginForm.style.display = 'block';
-        });
-        
-        // Edit email in verification
-        document.getElementById('editEmail').addEventListener('click', function() {
-            verificationForm.style.display = 'none';
-            signupForm.style.display = 'block';
-        });
-        
-        // Send code for signup
-        document.getElementById('sendSignupCodeBtn').addEventListener('click', function() {
-            const email = document.getElementById('signupEmail').value;
-            if (email && email.includes('@')) {
-                signupForm.style.display = 'none';
-                verificationForm.style.display = 'block';
-                startTimer(120); // 2 minutes timer
-            } else {
-                alert('لطفاً یک ایمیل معتبر وارد کنید');
-            }
-        });
-        
-        // Send code for forgot password
-        document.getElementById('sendCodeBtn').addEventListener('click', function() {
-            const email = document.getElementById('forgotEmail').value;
-            if (email && email.includes('@')) {
-                forgotPasswordForm.style.display = 'none';
-                verificationForm.style.display = 'block';
-                startTimer(120); // 2 minutes timer
-            } else {
-                alert('لطفاً یک ایمیل معتبر وارد کنید');
-            }
-        });
-        
-        // Verify code
-        document.getElementById('verifyCodeBtn').addEventListener('click', function() {
-            const codeInputs = document.querySelectorAll('.code-input');
-            let code = '';
-            codeInputs.forEach(input => {
-                code += input.value;
-            });
-            
-            if (code.length === 5) {
-                verificationForm.style.display = 'none';
-                setPasswordForm.style.display = 'block';
-            } else {
-                alert('لطفاً کد ۵ رقمی را کامل وارد کنید');
-            }
-        });
-        
-        // Login
+        // ورود
         document.getElementById('loginBtn').addEventListener('click', function() {
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
             
             if (email && password) {
-                // Save user to localStorage
-                const user = {
-                    email: email,
-                    displayName: email.split('@')[0],
-                    joinDate: new Date().toLocaleDateString('fa-IR'),
-                    lastLogin: 'هم اکنون'
-                };
+                // بررسی حساب‌های ادمین
+                const adminUser = adminAccounts.find(user => 
+                    user.email === email && user.password === password);
                 
-                localStorage.setItem('user', JSON.stringify(user));
-                
-                // Show profile page
-                loginForm.style.display = 'none';
-                profilePage.style.display = 'block';
-                
-                // Update profile info
-                document.getElementById('profileDisplayName').textContent = user.displayName;
-                document.getElementById('profileEmail').textContent = user.email;
-                document.getElementById('joinDate').textContent = user.joinDate;
-                document.getElementById('lastLogin').textContent = user.lastLogin;
+                if (adminUser) {
+                    localStorage.setItem('user', JSON.stringify(adminUser));
+                    
+                    // نمایش صفحه پروفایل
+                    loginForm.style.display = 'none';
+                    profilePage.style.display = 'block';
+                    
+                    // به‌روزرسانی اطلاعات پروفایل
+                    document.getElementById('profileDisplayName').textContent = adminUser.displayName;
+                    document.getElementById('profileEmail').textContent = adminUser.email;
+                    document.getElementById('joinDate').textContent = new Date().toLocaleDateString('fa-IR');
+                    document.getElementById('lastLogin').textContent = 'هم اکنون';
+                    document.getElementById('accountType').textContent = adminUser.isAdmin ? 'ادمین' : 'کاربر عادی';
+                    
+                    // نمایش کنترل‌های ادمین
+                    if (adminUser.isAdmin) {
+                        document.getElementById('accountAdminControls').style.display = 'block';
+                        document.getElementById('blogAdminControls').style.display = 'block';
+                        document.getElementById('ranksAdminControls').style.display = 'block';
+                        document.getElementById('rulesAdminControls').style.display = 'block';
+                    }
+                } else {
+                    alert('ایمیل یا رمز عبور اشتباه است');
+                }
             } else {
                 alert('لطفاً ایمیل و رمز عبور را وارد کنید');
             }
         });
         
-        // Create account
-        document.getElementById('createAccountBtn').addEventListener('click', function() {
-            const displayName = document.getElementById('displayName').value;
-            const password = document.getElementById('signupPassword').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            const email = document.getElementById('signupEmail').value;
+        // خروج از حساب
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('user');
+            profilePage.style.display = 'none';
+            loginForm.style.display = 'block';
             
-            if (password !== confirmPassword) {
-                alert('رمز عبور و تکرار آن باید یکسان باشند');
-                return;
-            }
+            // مخفی کردن کنترل‌های ادمین
+            document.getElementById('accountAdminControls').style.display = 'none';
+            document.getElementById('blogAdminControls').style.display = 'none';
+            document.getElementById('ranksAdminControls').style.display = 'none';
+            document.getElementById('rulesAdminControls').style.display = 'none';
+        });
+        
+        // بررسی وضعیت ورود کاربر
+        window.addEventListener('DOMContentLoaded', function() {
+            const userData = localStorage.getItem('user');
             
-            if (displayName && password && email) {
-                // Save user to localStorage
-                const user = {
-                    email: email,
-                    displayName: displayName,
-                    joinDate: new Date().toLocaleDateString('fa-IR'),
-                    lastLogin: 'هم اکنون'
-                };
+            if (userData) {
+                const user = JSON.parse(userData);
                 
-                localStorage.setItem('user', JSON.stringify(user));
-                
-                // Show profile page
-                setPasswordForm.style.display = 'none';
-                profilePage.style.display = 'block';
-                
-                // Update profile info
+                // به‌روزرسانی اطلاعات پروفایل
                 document.getElementById('profileDisplayName').textContent = user.displayName;
                 document.getElementById('profileEmail').textContent = user.email;
-                document.getElementById('joinDate').textContent = user.joinDate;
-                document.getElementById('lastLogin').textContent = user.lastLogin;
+                document.getElementById('joinDate').textContent = new Date().toLocaleDateString('fa-IR');
+                document.getElementById('lastLogin').textContent = 'هم اکنون';
+                document.getElementById('accountType').textContent = user.isAdmin ? 'ادمین' : 'کاربر عادی';
+                
+                // نمایش صفحه پروفایل
+                loginForm.style.display = 'none';
+                profilePage.style.display = 'block';
+                
+                // نمایش کنترل‌های ادمین
+                if (user.isAdmin) {
+                    document.getElementById('accountAdminControls').style.display = 'block';
+                    document.getElementById('blogAdminControls').style.display = 'block';
+                    document.getElementById('ranksAdminControls').style.display = 'block';
+                    document.getElementById('rulesAdminControls').style.display = 'block';
+                }
+            }
+        });
+        
+        // ایجاد کاربر جدید توسط ادمین
+        document.getElementById('createUserBtn').addEventListener('click', function() {
+            const email = prompt('ایمیل کاربر جدید را وارد کنید:');
+            const password = prompt('رمز عبور کاربر جدید را وارد کنید:');
+            const displayName = prompt('نام نمایشی کاربر جدید را وارد کنید:');
+            
+            if (email && password && displayName) {
+                const newUser = {
+                    email: email,
+                    password: password,
+                    displayName: displayName,
+                    isAdmin: false
+                };
+                
+                // ذخیره کاربر در localStorage
+                localStorage.setItem('user_' + email, JSON.stringify(newUser));
+                alert('حساب کاربری جدید با موفقیت ایجاد شد!');
             } else {
                 alert('لطفاً تمامی فیلدها را پر کنید');
             }
         });
         
-        // Check if user is logged in
-        window.addEventListener('DOMContentLoaded', function() {
-            const user = localStorage.getItem('user');
-            
-            if (user) {
-                const userData = JSON.parse(user);
-                
-                // Update profile info
-                document.getElementById('profileDisplayName').textContent = userData.displayName;
-                document.getElementById('profileEmail').textContent = userData.email;
-                document.getElementById('joinDate').textContent = userData.joinDate;
-                document.getElementById('lastLogin').textContent = userData.lastLogin;
-                
-                // Show profile page
-                loginForm.style.display = 'none';
-                profilePage.style.display = 'block';
-            }
-        });
-        
-        // Timer function for verification code
-        function startTimer(duration) {
-            let timer = duration, minutes, seconds;
-            const countdownElement = document.getElementById('countdown');
-            const resendBtn = document.getElementById('resendCodeBtn');
-            
-            resendBtn.classList.add('disabled');
-            
-            const timerInterval = setInterval(function() {
-                minutes = parseInt(timer / 60, 10);
-                seconds = parseInt(timer % 60, 10);
-                
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
-                
-                countdownElement.textContent = minutes + ":" + seconds;
-                
-                if (--timer < 0) {
-                    clearInterval(timerInterval);
-                    resendBtn.classList.remove('disabled');
-                }
-            }, 1000);
-            
-            // Resend code functionality
-            resendBtn.addEventListener('click', function() {
-                if (!this.classList.contains('disabled')) {
-                    startTimer(120);
-                }
-            });
-        }
-        
-        // Auto focus on next code input
-        const codeInputs = document.querySelectorAll('.code-input');
-        codeInputs.forEach((input, index) => {
-            input.addEventListener('input', function() {
-                if (this.value.length === 1 && index < codeInputs.length - 1) {
-                    codeInputs[index + 1].focus();
-                }
-            });
-            
-            input.addEventListener('keydown', function(e) {
-                if (e.key === 'Backspace' && this.value.length === 0 && index > 0) {
-                    codeInputs[index - 1].focus();
-                }
-            });
-        });
-        
-        // Play background music
+        // پخش موزیک پس‌زمینه
         document.addEventListener('DOMContentLoaded', function() {
             const bgMusic = document.getElementById('bgMusic');
-            bgMusic.volume = 0.3; // تنظیم صدا به 30%
+            bgMusic.volume = 0.3;
         });
     </script>
 </body>
-</html>
+    </html>
