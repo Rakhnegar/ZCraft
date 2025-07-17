@@ -537,148 +537,91 @@
             box-shadow: 0 8px 20px rgba(247, 37, 133, 0.5);
         }
         
-        .jobs-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .job-card {
-            background: var(--glass-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: all 0.4s;
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-        }
-        
-        .job-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            border-color: rgba(67, 97, 238, 0.4);
-        }
-        
-        .job-icon {
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .job-icon:before {
-            content: '';
-            position: absolute;
+        /* Modal for rank details */
+        .rank-modal {
+            display: none;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.2);
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
         }
         
-        .job-police { background: linear-gradient(135deg, #4361ee, #3a0ca3); }
-        .job-fbi { background: linear-gradient(135deg, #f72585, #b5179e); }
-        .job-swat { background: linear-gradient(135deg, #4cc9f0, #4895ef); }
-        .job-miner { background: linear-gradient(135deg, #f8961e, #f3722c); }
-        .job-medic { background: linear-gradient(135deg, #2ec4b6, #1a936f); }
-        .job-hitman { background: linear-gradient(135deg, #6a4c93, #4a306d); }
-        .job-god-miner { background: linear-gradient(135deg, #ff9800, #f57c00); }
-        .job-wood-miner { background: linear-gradient(135deg, #8d6e63, #5d4037); }
-        .job-nazi { background: linear-gradient(135deg, #9c27b0, #7b1fa2); }
-        .job-saghi { background: linear-gradient(135deg, #4caf50, #2e7d32); }
-        .job-paint-baller { background: linear-gradient(135deg, #ff4081, #f50057); }
-        .job-gun-deller { background: linear-gradient(135deg, #7c4dff, #651fff); }
-        
-        .job-content {
-            padding: 1.5rem;
-        }
-        
-        .job-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
-        }
-        
-        .job-description {
-            line-height: 1.7;
-            color: #cbd5e1;
-        }
-        
-        .job-description p {
-            margin-bottom: 0.7rem;
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .job-description p:before {
-            content: '•';
-            margin-left: 0.5rem;
-            color: var(--accent);
-        }
-        
-        .job-info-section {
+        .rank-modal-content {
             background: var(--glass-bg);
             border-radius: 20px;
-            padding: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto 4rem;
-            box-shadow: var(--card-shadow);
+            padding: 2rem;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
             border: 1px solid var(--glass-border);
             backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
         
-        .job-info-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 2rem;
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 1.5rem;
             color: var(--accent);
-            font-family: 'Samim', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s;
         }
         
-        .job-info-content {
-            line-height: 1.8;
+        .close-modal:hover {
+            transform: rotate(90deg);
+            color: var(--secondary);
         }
         
-        .job-info-content h3 {
-            font-size: 1.4rem;
-            margin: 1.5rem 0 0.8rem;
-            color: var(--accent);
-            border-right: 3px solid var(--accent);
-            padding-right: 0.8rem;
+        .rank-modal-body {
+            margin-top: 1.5rem;
         }
         
-        .job-info-content ul {
+        .rank-modal-body ul {
+            list-style-type: none;
             padding-right: 1.5rem;
-            margin-bottom: 1.5rem;
         }
         
-        .job-info-content li {
-            margin-bottom: 0.7rem;
+        .rank-modal-body li {
+            padding: 0.5rem 0;
+            color: #cbd5e1;
             position: relative;
         }
         
-        .job-info-content li:before {
+        .rank-modal-body li:before {
             content: '•';
             position: absolute;
             right: -1.5rem;
             color: var(--accent);
         }
         
-        .login-form {
+        /* Account Page Styles */
+        .account-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .form-container {
             background: var(--glass-bg);
             border-radius: 20px;
             padding: 2.5rem;
-            max-width: 500px;
-            margin: 0 auto;
             box-shadow: var(--card-shadow);
             border: 1px solid var(--glass-border);
             backdrop-filter: blur(10px);
+        }
+        
+        .form-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
         }
         
         .form-group {
@@ -707,6 +650,134 @@
             outline: none;
             border-color: var(--accent);
             box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.3);
+        }
+        
+        .form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        
+        .form-switch {
+            color: var(--accent);
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .form-switch:hover {
+            text-decoration: underline;
+        }
+        
+        .code-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .code-input {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(67, 97, 238, 0.3);
+            background: rgba(15, 23, 42, 0.4);
+            color: white;
+        }
+        
+        .timer {
+            text-align: center;
+            margin: 15px 0;
+            color: #94a3b8;
+        }
+        
+        .resend-code {
+            text-align: center;
+            color: var(--accent);
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .resend-code.disabled {
+            color: #94a3b8;
+            cursor: not-allowed;
+        }
+        
+        /* Profile Page */
+        .profile-card {
+            background: var(--glass-bg);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .profile-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 3rem;
+            color: white;
+        }
+        
+        .profile-name {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .profile-email {
+            color: #94a3b8;
+        }
+        
+        .profile-details {
+            margin-bottom: 2rem;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .detail-label {
+            font-weight: 600;
+        }
+        
+        .detail-value {
+            color: #cbd5e1;
+        }
+        
+        .change-password-btn {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .change-password-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
         }
         
         .footer {
@@ -750,37 +821,6 @@
             color: #94a3b8;
             margin-top: 1rem;
             font-size: 0.9rem;
-        }
-        
-        .rank-details {
-            background: rgba(15, 23, 42, 0.4);
-            border-radius: 15px;
-            padding: 1.5rem;
-            margin-top: 1.5rem;
-            border-left: 3px solid var(--accent);
-        }
-        
-        .rank-details h4 {
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-        
-        .rank-details ul {
-            list-style-type: none;
-            padding-right: 1.5rem;
-        }
-        
-        .rank-details li {
-            padding: 0.5rem 0;
-            color: #cbd5e1;
-            position: relative;
-        }
-        
-        .rank-details li:before {
-            content: '•';
-            position: absolute;
-            right: -1.5rem;
-            color: var(--accent);
         }
         
         /* Animations */
@@ -860,6 +900,12 @@
             .hamburger-menu {
                 display: block;
             }
+            
+            .form-footer {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
@@ -880,6 +926,7 @@
             <li><a href="#" class="nav-link active" data-page="home">خانه</a></li>
             <li><a href="#" class="nav-link" data-page="blog">وبلاگ</a></li>
             <li><a href="#" class="nav-link" data-page="ranks">فروشگاه</a></li>
+            <li><a href="#" class="nav-link" data-page="account">حساب کاربری</a></li>
         </ul>
     </div>
     
@@ -896,6 +943,7 @@
             <a href="#" class="nav-link active" data-page="home">خانه</a>
             <a href="#" class="nav-link" data-page="blog">وبلاگ</a>
             <a href="#" class="nav-link" data-page="ranks">فروشگاه</a>
+            <a href="#" class="nav-link" data-page="account">حساب کاربری</a>
         </div>
         
         <div class="server-ip">
@@ -912,7 +960,6 @@
             </p>
             
             <div class="hero-btns">
-                <!-- دکمه اتصال به سرور حذف شده -->
                 <button class="btn btn-secondary" id="buyRankBtn">
                     <i class="fas fa-crown"></i> خرید رنک
                 </button>
@@ -952,193 +999,38 @@
     <section id="blog" class="page">
         <div class="section-title">وبلاگ سرور</div>
         
-        <!-- بخش اطلاعات شغل‌ها -->
-        <div class="job-info-section">
-            <h2 class="job-info-title">Job Info / درباره ی جاب ها</h2>
-            
-            <div class="job-info-content">
-                <h3>👮 Police</h3>
-                <p>جیل کردن افراد وانتد دار(از 1 تا 2) - برقراری نظم و امنیت در اسپان به کمک سوات و اف بی آی - کشتن افراد شورشی و دزد(رابری)</p>
-                
-                <h3>🔫 Fbi</h3>
-                <p>جیل کردن افراد وانتد دار(از 2 تا 4 ) - برقراری نظم و امنیت در اسپان به کمک سوات و پلیس - در صورت دیدن مواد مخدر در دست کسی اون رو به جیل ببره</p>
-                
-                <h3>🛡️ S.W.A.T</h3>
-                <p>جیل کردن افراد وانتد دار (از 1 تا 5) - در صورت دیدن فروش گان اد دادن وانتد و بردن به جیل (2 وانتد) - در صورت دیدن فروش مواد اد دادن وانتد و بردن به جیل (3‌ وانتد)</p>
-                <p>توجه داشته باشید شغل های نظامی برای هر‌ وانتد 2 دقیقه میتوانند جیل بدن</p>
-                <p>و توجه داشته باشید برای جیل کردن افراد باید به زندان مرکزی برید و بقل سلول ها بایستید و پنل مقابل خودتونو باز کنید‌ اونجا خودش از وانتد یک تا وانتد 5 رو آماده برای جیل داره سپس شما روی مقدار مورد نظر‌ کلیک میکنید و اسم فردی که وانتد داره رو توی چت مینویسید سپس فرد اتوماتیک جیل میشه</p>
-                <p>برای وانتد اد کردن هم پنل داخل موبایل رو باز میکند و روی مقدار وانتد کلیک میکنید اسم فرد رو تو چت مینوسید و خودش اتوماتیک وانتد میگیره</p>
-                
-                <h3>⬜️ Paint Baller</h3>
-                <p>برای اولین بار در سرور‌ های ماینکرافتی رول پلی ایران زد کرفت شغلی جالب اضافه کرده. کار این شغل اینه شما پیش مربی پینت بال میرید ازش درخواست تست میکنید اون از شما تو زمین مخصوص تست میگیره اگر قبول شدید به تیم اون میپیوندید ، مسابقه با تیم های مختلف شروع میشه فایت های پینت بال تک به تک ، هرکی ۱ راند رو ببره یک امتیاز به کل تیم داده میشه ، اگر شما مسابقه رو برنده بشید نفری 100k و مربی 200k میگیرد</p>
-                
-                <h3>🏮 Gun Deller</h3>
-                <p>فروشنده گان ، در این شغل شما از لیدر خود سهمیه گان دریافت میکنید و‌ باید در اضای سهمیه اون گان هارو بفروشید (چه در ah چه در حالت عادی) و از مسیج فروختن اس اس بگیرید و بعد طبق‌ تصمیمات بین 30 تا 100k حقوق دریافت کنید</p>
-                
-                <h3>🏥 Medic</h3>
-                <p>ریو دادن افراد ناک</p>
-                
-                <h3>⚫️ Hitman</h3>
-                <p>این جاب‌ به زودی سیستمی فوق پیشرفته خواهد داشت.....</p>
-            </div>
-        </div>
-        
-        <!-- کارت‌های شغل‌ها -->
-        <div class="section-title" style="margin-top: 80px;">شغل‌های سرور</div>
-        
-        <div class="jobs-container">
-            <div class="job-card">
-                <div class="job-icon job-police">
-                    👮
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-newspaper"></i>
                 </div>
-                <div class="job-content">
-                    <h3 class="job-title">پلیس</h3>
-                    <div class="job-description">
-                        <p>جیل کردن افراد وانتد دار (از 1 تا 2)</p>
-                        <p>برقراری نظم و امنیت در اسپان</p>
-                        <p>کشتن افراد شورشی و دزد (رابری)</p>
-                    </div>
-                </div>
+                <h3>آخرین اخبار</h3>
+                <p>آپدیت جدید سرور با ویژگی‌های منحصر به فرد منتشر شد</p>
+                <button class="btn btn-secondary" style="margin-top: 20px;">
+                    مطالعه بیشتر
+                </button>
             </div>
             
-            <div class="job-card">
-                <div class="job-icon job-fbi">
-                    🔫
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-calendar-alt"></i>
                 </div>
-                <div class="job-content">
-                    <h3 class="job-title">اف بی آی</h3>
-                    <div class="job-description">
-                        <p>جیل کردن افراد وانتد دار (از 2 تا 4)</p>
-                        <p>برقراری نظم و امنیت در اسپان</p>
-                        <p>دستگیری افراد دارای مواد مخدر</p>
-                    </div>
-                </div>
+                <h3>رویدادهای پیش‌رو</h3>
+                <p>مسابقات هفتگی با جوایز نفیس برای برندگان</p>
+                <button class="btn btn-secondary" style="margin-top: 20px;">
+                    مشاهده رویدادها
+                </button>
             </div>
             
-            <div class="job-card">
-                <div class="job-icon job-swat">
-                    🛡️
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-trophy"></i>
                 </div>
-                <div class="job-content">
-                    <h3 class="job-title">سوات</h3>
-                    <div class="job-description">
-                        <p>جیل کردن افراد وانتد دار (از 1 تا 5)</p>
-                        <p>دستگیری فروشندگان سلاح و مواد</p>
-                        <p>برقراری امنیت در سطح شهر</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="job-card">
-                <div class="job-icon job-paint-baller">
-                    🎯
-                </div>
-                <div class="job-content">
-                    <h3 class="job-title">Paint Baller</h3>
-                    <div class="job-description">
-                        <p>مسابقات پینت بال تیمی</p>
-                        <p>درآمدزایی از طریق برنده شدن</p>
-                        <p>همکاری با مربیان حرفه‌ای</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="job-card">
-                <div class="job-icon job-gun-deller">
-                    🏮
-                </div>
-                <div class="job-content">
-                    <h3 class="job-title">Gun Deller</h3>
-                    <div class="job-description">
-                        <p>فروش سلاح با سهمیه مشخص</p>
-                        <p>درآمدزایی از فروش سلاح</p>
-                        <p>همکاری با لیدرها</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="job-card">
-                <div class="job-icon job-medic">
-                    🏥
-                </div>
-                <div class="job-content">
-                    <h3 class="job-title">Medic</h3>
-                    <div class="job-description">
-                        <p>احیای بازیکنان ناک‌اوت</p>
-                        <p>ارائه خدمات پزشکی</p>
-                        <p>کمک به بازیکنان آسیب دیده</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="job-card">
-                <div class="job-icon job-hitman">
-                    ⚫️
-                </div>
-                <div class="job-content">
-                    <h3 class="job-title">Hitman</h3>
-                    <div class="job-description">
-                        <p>سیستم فوق پیشرفته</p>
-                        <p>مأموریت‌های مخفی</p>
-                        <p>درآمدزایی بالا</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="job-card">
-                <div class="job-icon job-god-miner">
-                    ⛏️
-                </div>
-                <div class="job-content">
-                    <h3 class="job-title">God Miner</h3>
-                    <div class="job-description">
-                        <p>استخراج مواد معدنی</p>
-                        <p>فروش با 1.5 برابر قیمت</p>
-                        <p>درآمدزایی عالی</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="job-card">
-                <div class="job-icon job-wood-miner">
-                    🪵
-                </div>
-                <div class="job-content">
-                    <h3 class="job-title">Wood Miner</h3>
-                    <div class="job-description">
-                        <p>استخراج چوب در جنگل‌ها</p>
-                        <p>فروش با 1.5 برابر قیمت</p>
-                        <p>درآمدزایی خوب</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="job-card">
-                <div class="job-icon job-nazi">
-                    ☄️
-                </div>
-                <div class="job-content">
-                    <h3 class="job-title">N.a.z.i</h3>
-                    <div class="job-description">
-                        <p>نیاز به تجربه نظامی</p>
-                        <p>مهارت در مقابله با نظامی‌ها</p>
-                        <p>ممنوعیت کشتن هیتمن</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="job-card">
-                <div class="job-icon job-saghi">
-                    👤
-                </div>
-                <div class="job-content">
-                    <h3 class="job-title">Saghi</h3>
-                    <div class="job-description">
-                        <p>فروش مواد مخدر</p>
-                        <p>دریافت سهمیه مواد</p>
-                        <p>درآمدزایی از فروش مواد</p>
-                    </div>
-                </div>
+                <h3>مسابقات هفتگی</h3>
+                <p>شرکت در مسابقات و برنده شدن جایزه‌های ویژه</p>
+                <button class="btn btn-secondary" style="margin-top: 20px;">
+                    ثبت نام در مسابقه
+                </button>
             </div>
         </div>
     </section>
@@ -1161,18 +1053,7 @@
                         <li><i class="fas fa-check-circle"></i> دسترسی به /anvil و /glow</li>
                         <li><i class="fas fa-check-circle"></i> امکان ایجاد گنگ</li>
                     </ul>
-                    <button class="rank-btn">خرید رنک</button>
-                    
-                    <div class="rank-details">
-                        <h4>جزئیات بیشتر:</h4>
-                        <ul>
-                            <li>300 هزار سکه درون سرور</li>
-                            <li>دسترسی به /hat و /chestshop</li>
-                            <li>اولویت در تپ لیست</li>
-                            <li>دسترسی به تمامی دستورات ویژه</li>
-                            <li>پشتیبانی اختصاصی</li>
-                        </ul>
-                    </div>
+                    <button class="rank-btn" data-rank="z-plus">خرید رنک</button>
                 </div>
             </div>
             
@@ -1189,18 +1070,7 @@
                         <li><i class="fas fa-check-circle"></i> دسترسی به /craft</li>
                         <li><i class="fas fa-check-circle"></i> کیت Z</li>
                     </ul>
-                    <button class="rank-btn">خرید رنک</button>
-                    
-                    <div class="rank-details">
-                        <h4>جزئیات بیشتر:</h4>
-                        <ul>
-                            <li>100 هزار سکه درون سرور</li>
-                            <li>دسترسی به /hat</li>
-                            <li>اولویت دوم در تپ لیست</li>
-                            <li>دسترسی به کیت‌های ویژه</li>
-                            <li>پشتیبانی اختصاصی</li>
-                        </ul>
-                    </div>
+                    <button class="rank-btn" data-rank="z-fire">خرید رنک</button>
                 </div>
             </div>
             
@@ -1217,22 +1087,160 @@
                         <li><i class="fas fa-check-circle"></i> کیت Older</li>
                         <li><i class="fas fa-check-circle"></i> شغل مافیا به مدت 10 روز</li>
                     </ul>
-                    <button class="rank-btn">خرید رنک</button>
-                    
-                    <div class="rank-details">
-                        <h4>جزئیات بیشتر:</h4>
-                        <ul>
-                            <li>80 هزار سکه درون سرور</li>
-                            <li>دسترسی به /hat</li>
-                            <li>اولویت سوم در تپ لیست</li>
-                            <li>دسترسی به کیت‌های عمومی</li>
-                            <li>پشتیبانی استاندارد</li>
-                        </ul>
-                    </div>
+                    <button class="rank-btn" data-rank="older">خرید رنک</button>
                 </div>
             </div>
         </div>
     </section>
+    
+    <!-- Account Page -->
+    <section id="account" class="page">
+        <div class="account-container">
+            <!-- Login Form -->
+            <div class="form-container" id="loginForm">
+                <h2 class="form-title">ورود به حساب کاربری</h2>
+                <div class="form-group">
+                    <label for="loginEmail">ایمیل</label>
+                    <input type="email" id="loginEmail" class="form-control" placeholder="ایمیل خود را وارد کنید">
+                </div>
+                
+                <div class="form-group">
+                    <label for="loginPassword">رمز عبور</label>
+                    <input type="password" id="loginPassword" class="form-control" placeholder="رمز عبور خود را وارد کنید">
+                </div>
+                
+                <div class="form-footer">
+                    <span class="form-switch" id="showForgotPassword">فراموشی رمز عبور</span>
+                    <button class="btn btn-primary" id="loginBtn">ورود</button>
+                </div>
+                
+                <div class="form-footer" style="justify-content: center; margin-top: 1.5rem;">
+                    <span>حساب کاربری ندارید؟ </span>
+                    <span class="form-switch" id="showSignup">ثبت نام کنید</span>
+                </div>
+            </div>
+            
+            <!-- Forgot Password Form -->
+            <div class="form-container" id="forgotPasswordForm" style="display: none;">
+                <h2 class="form-title">بازیابی رمز عبور</h2>
+                <div class="form-group">
+                    <label for="forgotEmail">ایمیل</label>
+                    <input type="email" id="forgotEmail" class="form-control" placeholder="ایمیل خود را وارد کنید">
+                </div>
+                
+                <button class="btn btn-primary" id="sendCodeBtn">ارسال کد تایید</button>
+                
+                <div class="form-footer" style="justify-content: center; margin-top: 1.5rem;">
+                    <span class="form-switch" id="backToLogin">بازگشت به صفحه ورود</span>
+                </div>
+            </div>
+            
+            <!-- Verification Code Form -->
+            <div class="form-container" id="verificationForm" style="display: none;">
+                <h2 class="form-title">تایید کد</h2>
+                <p style="text-align: center; margin-bottom: 1.5rem;">کد تایید ۵ رقمی به ایمیل شما ارسال شد</p>
+                
+                <div class="code-group">
+                    <input type="text" class="code-input" maxlength="1" autocomplete="off">
+                    <input type="text" class="code-input" maxlength="1" autocomplete="off">
+                    <input type="text" class="code-input" maxlength="1" autocomplete="off">
+                    <input type="text" class="code-input" maxlength="1" autocomplete="off">
+                    <input type="text" class="code-input" maxlength="1" autocomplete="off">
+                </div>
+                
+                <div class="timer">
+                    زمان باقیمانده: <span id="countdown">02:00</span>
+                </div>
+                
+                <p class="resend-code disabled" id="resendCodeBtn">ارسال مجدد کد</p>
+                
+                <button class="btn btn-primary" id="verifyCodeBtn" style="margin-top: 1.5rem;">تایید کد</button>
+                
+                <div class="form-footer" style="justify-content: center; margin-top: 1.5rem;">
+                    <span class="form-switch" id="editEmail">تصحیح ایمیل</span>
+                </div>
+            </div>
+            
+            <!-- Signup Form -->
+            <div class="form-container" id="signupForm" style="display: none;">
+                <h2 class="form-title">ایجاد حساب کاربری</h2>
+                <div class="form-group">
+                    <label for="signupEmail">ایمیل</label>
+                    <input type="email" id="signupEmail" class="form-control" placeholder="ایمیل خود را وارد کنید">
+                </div>
+                
+                <button class="btn btn-primary" id="sendSignupCodeBtn">ارسال کد تایید</button>
+                
+                <div class="form-footer" style="justify-content: center; margin-top: 1.5rem;">
+                    <span>حساب کاربری دارید؟ </span>
+                    <span class="form-switch" id="backToLogin2">وارد شوید</span>
+                </div>
+            </div>
+            
+            <!-- Set Password Form -->
+            <div class="form-container" id="setPasswordForm" style="display: none;">
+                <h2 class="form-title">ایجاد حساب کاربری</h2>
+                <div class="form-group">
+                    <label for="displayName">نام نمایشی</label>
+                    <input type="text" id="displayName" class="form-control" placeholder="نام نمایشی خود را وارد کنید">
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupPassword">رمز عبور</label>
+                    <input type="password" id="signupPassword" class="form-control" placeholder="رمز عبور خود را وارد کنید">
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">تکرار رمز عبور</label>
+                    <input type="password" id="confirmPassword" class="form-control" placeholder="رمز عبور را تکرار کنید">
+                </div>
+                
+                <button class="btn btn-primary" id="createAccountBtn">ایجاد حساب</button>
+            </div>
+            
+            <!-- Profile Page -->
+            <div class="profile-card" id="profilePage" style="display: none;">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h2 class="profile-name" id="profileDisplayName">نام کاربری</h2>
+                    <p class="profile-email" id="profileEmail">user@example.com</p>
+                </div>
+                
+                <div class="profile-details">
+                    <div class="detail-item">
+                        <span class="detail-label">تاریخ عضویت:</span>
+                        <span class="detail-value" id="joinDate">1403/01/01</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">آخرین ورود:</span>
+                        <span class="detail-value" id="lastLogin">هم اکنون</span>
+                    </div>
+                </div>
+                
+                <button class="change-password-btn" id="changePasswordBtn">تغییر رمز عبور</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Rank Modal -->
+    <div class="rank-modal" id="rankModal">
+        <div class="rank-modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div class="rank-modal-body">
+                <h2 id="modalRankName">نام رنک</h2>
+                <h3 id="modalRankPrice">قیمت: 0 هزار تومان</h3>
+                
+                <h4>جزئیات رنک:</h4>
+                <ul id="modalRankDetails">
+                    <li>جزئیات رنک در اینجا نمایش داده می‌شود</li>
+                </ul>
+                
+                <button class="btn btn-primary" style="margin-top: 1.5rem; width: 100%;">خرید رنک</button>
+            </div>
+        </div>
+    </div>
     
     <!-- Footer -->
     <footer class="footer">
@@ -1302,11 +1310,297 @@
             window.scrollTo(0, 0);
         });
         
-        // Rank buttons
+        // Rank modals
+        const rankDetails = {
+            'z-plus': {
+                name: '🥷 Z +',
+                price: '200 هزار تومان',
+                details: [
+                    'دسترسی دائمی',
+                    'تمامی کیت‌های نقش‌آفرینی',
+                    'دسترسی به /anvil و /glow',
+                    'امکان ایجاد گنگ',
+                    '300 هزار سکه درون سرور',
+                    'دسترسی به /hat و /chestshop',
+                    'اولویت در تپ لیست',
+                    'دسترسی به تمامی دستورات ویژه',
+                    'پشتیبانی اختصاصی'
+                ]
+            },
+            'z-fire': {
+                name: 'Z 🔥',
+                price: '120 هزار تومان',
+                details: [
+                    'دسترسی به /glow',
+                    'شغل سوات به مدت 30 روز',
+                    'دسترسی به /craft',
+                    'کیت Z',
+                    '100 هزار سکه درون سرور',
+                    'دسترسی به /hat',
+                    'اولویت دوم در تپ لیست',
+                    'دسترسی به کیت‌های ویژه',
+                    'پشتیبانی اختصاصی'
+                ]
+            },
+            'older': {
+                name: 'Older ⛰️',
+                price: '80 هزار تومان',
+                details: [
+                    'دسترسی به /craft',
+                    'فروش 10 آیتم در حراجی',
+                    'کیت Older',
+                    'شغل مافیا به مدت 10 روز',
+                    '80 هزار سکه درون سرور',
+                    'دسترسی به /hat',
+                    'اولویت سوم در تپ لیست',
+                    'دسترسی به کیت‌های عمومی',
+                    'پشتیبانی استاندارد'
+                ]
+            }
+        };
+        
+        // Open rank modal
         document.querySelectorAll('.rank-btn').forEach(button => {
             button.addEventListener('click', function() {
-                const rankName = this.closest('.rank-card').querySelector('.rank-name').textContent;
-                alert(`شما در حال خرید رنک ${rankName} هستید. در نسخه کامل به صفحه پرداخت هدایت می‌شوید.`);
+                const rankId = this.getAttribute('data-rank');
+                const rank = rankDetails[rankId];
+                
+                document.getElementById('modalRankName').textContent = rank.name;
+                document.getElementById('modalRankPrice').textContent = `قیمت: ${rank.price}`;
+                
+                const detailsList = document.getElementById('modalRankDetails');
+                detailsList.innerHTML = '';
+                
+                rank.details.forEach(detail => {
+                    const li = document.createElement('li');
+                    li.textContent = detail;
+                    detailsList.appendChild(li);
+                });
+                
+                document.getElementById('rankModal').style.display = 'flex';
+            });
+        });
+        
+        // Close rank modal
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('rankModal').style.display = 'none';
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target === document.getElementById('rankModal')) {
+                document.getElementById('rankModal').style.display = 'none';
+            }
+        });
+        
+        // Account system
+        const loginForm = document.getElementById('loginForm');
+        const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+        const verificationForm = document.getElementById('verificationForm');
+        const signupForm = document.getElementById('signupForm');
+        const setPasswordForm = document.getElementById('setPasswordForm');
+        const profilePage = document.getElementById('profilePage');
+        
+        // Show forgot password form
+        document.getElementById('showForgotPassword').addEventListener('click', function() {
+            loginForm.style.display = 'none';
+            forgotPasswordForm.style.display = 'block';
+        });
+        
+        // Back to login from forgot password
+        document.getElementById('backToLogin').addEventListener('click', function() {
+            forgotPasswordForm.style.display = 'none';
+            loginForm.style.display = 'block';
+        });
+        
+        // Show signup form
+        document.getElementById('showSignup').addEventListener('click', function() {
+            loginForm.style.display = 'none';
+            signupForm.style.display = 'block';
+        });
+        
+        // Back to login from signup
+        document.getElementById('backToLogin2').addEventListener('click', function() {
+            signupForm.style.display = 'none';
+            loginForm.style.display = 'block';
+        });
+        
+        // Edit email in verification
+        document.getElementById('editEmail').addEventListener('click', function() {
+            verificationForm.style.display = 'none';
+            signupForm.style.display = 'block';
+        });
+        
+        // Send code for signup
+        document.getElementById('sendSignupCodeBtn').addEventListener('click', function() {
+            const email = document.getElementById('signupEmail').value;
+            if (email && email.includes('@')) {
+                signupForm.style.display = 'none';
+                verificationForm.style.display = 'block';
+                startTimer(120); // 2 minutes timer
+            } else {
+                alert('لطفاً یک ایمیل معتبر وارد کنید');
+            }
+        });
+        
+        // Send code for forgot password
+        document.getElementById('sendCodeBtn').addEventListener('click', function() {
+            const email = document.getElementById('forgotEmail').value;
+            if (email && email.includes('@')) {
+                forgotPasswordForm.style.display = 'none';
+                verificationForm.style.display = 'block';
+                startTimer(120); // 2 minutes timer
+            } else {
+                alert('لطفاً یک ایمیل معتبر وارد کنید');
+            }
+        });
+        
+        // Verify code
+        document.getElementById('verifyCodeBtn').addEventListener('click', function() {
+            const codeInputs = document.querySelectorAll('.code-input');
+            let code = '';
+            codeInputs.forEach(input => {
+                code += input.value;
+            });
+            
+            if (code.length === 5) {
+                verificationForm.style.display = 'none';
+                setPasswordForm.style.display = 'block';
+            } else {
+                alert('لطفاً کد ۵ رقمی را کامل وارد کنید');
+            }
+        });
+        
+        // Login
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if (email && password) {
+                // Save user to localStorage
+                const user = {
+                    email: email,
+                    displayName: email.split('@')[0],
+                    joinDate: new Date().toLocaleDateString('fa-IR'),
+                    lastLogin: 'هم اکنون'
+                };
+                
+                localStorage.setItem('user', JSON.stringify(user));
+                
+                // Show profile page
+                loginForm.style.display = 'none';
+                profilePage.style.display = 'block';
+                
+                // Update profile info
+                document.getElementById('profileDisplayName').textContent = user.displayName;
+                document.getElementById('profileEmail').textContent = user.email;
+                document.getElementById('joinDate').textContent = user.joinDate;
+                document.getElementById('lastLogin').textContent = user.lastLogin;
+            } else {
+                alert('لطفاً ایمیل و رمز عبور را وارد کنید');
+            }
+        });
+        
+        // Create account
+        document.getElementById('createAccountBtn').addEventListener('click', function() {
+            const displayName = document.getElementById('displayName').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const email = document.getElementById('signupEmail').value;
+            
+            if (password !== confirmPassword) {
+                alert('رمز عبور و تکرار آن باید یکسان باشند');
+                return;
+            }
+            
+            if (displayName && password && email) {
+                // Save user to localStorage
+                const user = {
+                    email: email,
+                    displayName: displayName,
+                    joinDate: new Date().toLocaleDateString('fa-IR'),
+                    lastLogin: 'هم اکنون'
+                };
+                
+                localStorage.setItem('user', JSON.stringify(user));
+                
+                // Show profile page
+                setPasswordForm.style.display = 'none';
+                profilePage.style.display = 'block';
+                
+                // Update profile info
+                document.getElementById('profileDisplayName').textContent = user.displayName;
+                document.getElementById('profileEmail').textContent = user.email;
+                document.getElementById('joinDate').textContent = user.joinDate;
+                document.getElementById('lastLogin').textContent = user.lastLogin;
+            } else {
+                alert('لطفاً تمامی فیلدها را پر کنید');
+            }
+        });
+        
+        // Check if user is logged in
+        window.addEventListener('DOMContentLoaded', function() {
+            const user = localStorage.getItem('user');
+            
+            if (user) {
+                const userData = JSON.parse(user);
+                
+                // Update profile info
+                document.getElementById('profileDisplayName').textContent = userData.displayName;
+                document.getElementById('profileEmail').textContent = userData.email;
+                document.getElementById('joinDate').textContent = userData.joinDate;
+                document.getElementById('lastLogin').textContent = userData.lastLogin;
+                
+                // Show profile page
+                loginForm.style.display = 'none';
+                profilePage.style.display = 'block';
+            }
+        });
+        
+        // Timer function for verification code
+        function startTimer(duration) {
+            let timer = duration, minutes, seconds;
+            const countdownElement = document.getElementById('countdown');
+            const resendBtn = document.getElementById('resendCodeBtn');
+            
+            resendBtn.classList.add('disabled');
+            
+            const timerInterval = setInterval(function() {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                
+                countdownElement.textContent = minutes + ":" + seconds;
+                
+                if (--timer < 0) {
+                    clearInterval(timerInterval);
+                    resendBtn.classList.remove('disabled');
+                }
+            }, 1000);
+            
+            // Resend code functionality
+            resendBtn.addEventListener('click', function() {
+                if (!this.classList.contains('disabled')) {
+                    startTimer(120);
+                }
+            });
+        }
+        
+        // Auto focus on next code input
+        const codeInputs = document.querySelectorAll('.code-input');
+        codeInputs.forEach((input, index) => {
+            input.addEventListener('input', function() {
+                if (this.value.length === 1 && index < codeInputs.length - 1) {
+                    codeInputs[index + 1].focus();
+                }
+            });
+            
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' && this.value.length === 0 && index > 0) {
+                    codeInputs[index - 1].focus();
+                }
             });
         });
         
@@ -1317,4 +1611,4 @@
         });
     </script>
 </body>
-                                                </html>
+</html>
