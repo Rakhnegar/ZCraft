@@ -6,6 +6,7 @@
     <title>سرور ماینکرفت زد کرفت | ZCraft</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&family=Samim:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         :root {
             --primary: #4361ee;
@@ -24,6 +25,8 @@
             --samurai-red: #e63946;
             --samurai-dark: #1d3557;
             --japan-red: #e41c23;
+            --success: #4ade80;
+            --error: #f87171;
         }
         
         * {
@@ -43,6 +46,7 @@
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
+            line-height: 1.7;
         }
         
         body::before {
@@ -243,6 +247,12 @@
         
         .page.active {
             display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         .hero {
@@ -452,6 +462,7 @@
             z-index: 1;
             border: 1px solid var(--glass-border);
             backdrop-filter: blur(10px);
+            cursor: pointer;
         }
         
         .rank-card:hover {
@@ -518,26 +529,7 @@
         
         .rank-body {
             padding: 1.5rem;
-        }
-        
-        .rank-features {
-            list-style-type: none;
-            margin-bottom: 1.5rem;
-        }
-        
-        .rank-features li {
-            padding: 0.7rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-            font-size: 0.95rem;
-            color: #cbd5e1;
-        }
-        
-        .rank-features li i {
-            color: var(--japan-red);
-            min-width: 20px;
+            text-align: center;
         }
         
         .rank-btn {
@@ -607,16 +599,27 @@
             border: 1px solid var(--glass-border);
             backdrop-filter: blur(10px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            animation: modalAppear 0.3s ease;
+        }
+        
+        @keyframes modalAppear {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
         
         .close-modal {
             position: absolute;
             top: 15px;
             left: 15px;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: var(--accent);
             cursor: pointer;
             transition: all 0.3s;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .close-modal:hover {
@@ -645,6 +648,203 @@
             position: absolute;
             right: -1.5rem;
             color: var(--japan-red);
+            font-size: 1.2rem;
+        }
+        
+        .rules-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .rule-card {
+            background: var(--glass-bg);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+        
+        .rule-card-title {
+            font-size: 1.5rem;
+            color: var(--japan-red);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .rule-card-content {
+            color: #cbd5e1;
+            line-height: 1.7;
+            padding-right: 1rem;
+        }
+        
+        .footer {
+            background: rgba(15, 23, 42, 0.9);
+            padding: 2rem;
+            border-top: 1px solid rgba(67, 97, 238, 0.2);
+            text-align: center;
+            margin-top: 4rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(67, 97, 238, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--text);
+            transition: all 0.4s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .social-icon:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+        }
+        
+        .copyright {
+            color: #94a3b8;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(15, 23, 42, 0.3);
+            border-radius: 20px;
+            border: 2px dashed var(--glass-border);
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .empty-state p {
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            justify-content: center;
+        }
+        
+        .blog-card {
+            background: var(--glass-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            z-index: 1;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            border-top: 3px solid var(--accent);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .blog-image {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .blog-excerpt {
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        .blog-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            z-index: 5000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transform: translateX(120%);
+            transition: transform 0.4s ease;
+            max-width: 90%;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.success {
+            background: var(--success);
+        }
+        
+        .notification.error {
+            background: var(--error);
+        }
+        
+        .notification.info {
+            background: var(--accent);
         }
         
         .account-container {
@@ -798,231 +998,29 @@
             box-shadow: 0 8px 20px rgba(255, 82, 82, 0.4);
         }
         
-        .rules-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .rule-category {
-            background: var(--glass-bg);
+        .register-message {
+            background: linear-gradient(135deg, rgba(73, 149, 239, 0.2), rgba(247, 37, 133, 0.2));
             border-radius: 20px;
             padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--card-shadow);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-        }
-        
-        .rule-category h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--japan-red);
-            border-bottom: 2px solid var(--japan-red);
-            padding-bottom: 10px;
-            position: relative;
-        }
-        
-        .rule-category h3:after {
-            content: "⚔️";
-            position: absolute;
-            right: -35px;
-            top: 0;
-            font-size: 1.5rem;
-        }
-        
-        .rules-list {
-            list-style-type: none;
-        }
-        
-        .rules-list li {
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            font-size: 1.1rem;
-            color: #cbd5e1;
-        }
-        
-        .rules-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .rules-list li i {
-            color: var(--japan-red);
-            margin-top: 5px;
-        }
-        
-        .admin-controls {
-            background: rgba(228, 28, 35, 0.1);
-            border-radius: 10px;
-            padding: 1.5rem;
             margin-top: 2rem;
-            border: 1px solid var(--japan-red);
-            display: none;
-        }
-        
-        .admin-controls h4 {
-            color: var(--japan-red);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .admin-btns {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        
-        .admin-btn {
-            padding: 0.7rem 1.2rem;
-            border-radius: 8px;
-            background: var(--japan-red);
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .admin-btn:hover {
-            background: #c1121f;
-            transform: translateY(-3px);
-        }
-        
-        .footer {
-            background: rgba(15, 23, 42, 0.9);
-            padding: 2rem;
-            border-top: 1px solid rgba(67, 97, 238, 0.2);
             text-align: center;
-            margin-top: 4rem;
-            backdrop-filter: blur(10px);
+            border: 1px solid var(--accent);
         }
         
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin: 1.5rem 0;
-        }
-        
-        .social-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(67, 97, 238, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: var(--text);
-            transition: all 0.4s;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        
-        .social-icon:hover {
-            background: var(--accent);
-            color: white;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
-        }
-        
-        .copyright {
-            color: #94a3b8;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 3rem;
-            background: rgba(15, 23, 42, 0.3);
-            border-radius: 20px;
-            border: 2px dashed var(--glass-border);
-        }
-        
-        .empty-state i {
-            font-size: 4rem;
-            color: var(--japan-red);
-            margin-bottom: 1.5rem;
-        }
-        
-        .empty-state h3 {
+        .register-message h3 {
             font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--japan-red);
-        }
-        
-        .empty-state p {
-            color: #94a3b8;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .blog-card {
-            background: var(--glass-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.4s;
-            box-shadow: var(--card-shadow);
-            position: relative;
-            z-index: 1;
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-        }
-        
-        .blog-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-        
-        .blog-image {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        
-        .blog-content {
-            padding: 1.5rem;
-        }
-        
-        .blog-title {
-            font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--accent);
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
-        .blog-excerpt {
+        .register-message p {
             color: #cbd5e1;
-            margin-bottom: 1.5rem;
             line-height: 1.7;
-        }
-        
-        .blog-meta {
-            display: flex;
-            justify-content: space-between;
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
-        
-        .blog-date {
-            display: flex;
-            align-items: center;
-            gap: 5px;
+            margin-bottom: 1.5rem;
         }
         
         @keyframes pulse {
@@ -1101,20 +1099,15 @@
                 display: block;
             }
             
-            .form-footer {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: flex-start;
-            }
-            
-            .admin-btns {
-                flex-direction: column;
+            .feature-card, .rank-card, .blog-card {
+                margin: 0 10px;
             }
         }
     </style>
 </head>
 <body>
     <div class="animated-bg"></div>
+    <div id="notification" class="notification"></div>
     
     <div class="hamburger-menu" id="hamburgerMenu">
         <div></div>
@@ -1203,23 +1196,18 @@
                 <i class="fas fa-exclamation-triangle"></i>
             </div>
             <h3 style="color: var(--secondary);">توجه!</h3>
-            <p>قبل از پلی دادن حتماً <a href="#" class="form-switch" data-page="rules">قوانین سرور</a> را مطالعه کنید</p>
+            <p>قبل از پلی دادن حتماً <a href="#" class="nav-link" data-page="rules">قوانین سرور</a> را مطالعه کنید</p>
         </div>
     </section>
     
     <section id="blog" class="page">
         <div class="section-title">وبلاگ سرور</div>
         
-        <div class="empty-state">
-            <i class="fas fa-newspaper"></i>
-            <h3>هنوز پستی وجود ندارد</h3>
-            <p>ادمین‌های سرور می‌توانند محتوای جدید در این بخش اضافه کنند</p>
-        </div>
-        
-        <div id="blogAdminControls" class="admin-controls">
-            <h4><i class="fas fa-user-shield"></i> کنترل‌های ادمین</h4>
-            <div class="admin-btns">
-                <button class="admin-btn" id="addBlogBtn"><i class="fas fa-plus"></i> افزودن پست جدید</button>
+        <div id="blogContainer" class="blog-grid">
+            <div class="empty-state">
+                <i class="fas fa-newspaper"></i>
+                <h3>وبلاگ سرور</h3>
+                <p>به زودی مطالب جدید در این بخش قرار خواهد گرفت.</p>
             </div>
         </div>
     </section>
@@ -1227,96 +1215,8 @@
     <section id="ranks" class="page">
         <div class="section-title">فروشگاه رنک‌ها</div>
         
-        <div class="ranks-grid">
-            <div class="rank-card">
-                <div class="discount-badge">تخفیف 50%</div>
-                <div class="rank-header">
-                    <div class="rank-name">
-                        <div class="rank-image" style="background-image: url('https://i.imgur.com/0b8F5yC.jpg')"></div>
-                        Z +
-                    </div>
-                    <div class="rank-price">
-                        <span class="original-price">200 هزار تومان</span>
-                        <span class="discounted-price">100 هزار تومان</span>
-                    </div>
-                </div>
-                <div class="rank-body">
-                    <ul class="rank-features">
-                        <li><i class="fas fa-check-circle"></i> دسترسی دائمی</li>
-                        <li><i class="fas fa-check-circle"></i> تمامی کیت‌های نقش‌آفرینی</li>
-                        <li><i class="fas fa-check-circle"></i> دسترسی به /anvil و /glow</li>
-                        <li><i class="fas fa-check-circle"></i> امکان ایجاد گنگ</li>
-                    </ul>
-                    <button class="rank-btn" data-rank="z-plus">خرید رنک</button>
-                </div>
-            </div>
-            
-            <div class="rank-card">
-                <div class="rank-header">
-                    <div class="rank-name">
-                        <div class="rank-image" style="background-image: url('https://i.imgur.com/7J9fYxG.jpg')"></div>
-                        Z Fire
-                    </div>
-                    <div class="rank-price">قیمت: 120 هزار تومان</div>
-                </div>
-                <div class="rank-body">
-                    <ul class="rank-features">
-                        <li><i class="fas fa-check-circle"></i> دسترسی به /glow</li>
-                        <li><i class="fas fa-check-circle"></i> شغل سوات به مدت 30 روز</li>
-                        <li><i class="fas fa-check-circle"></i> دسترسی به /craft</li>
-                        <li><i class="fas fa-check-circle"></i> کیت Z</li>
-                    </ul>
-                    <button class="rank-btn" data-rank="z-fire">خرید رنک</button>
-                </div>
-            </div>
-            
-            <div class="rank-card">
-                <div class="rank-header">
-                    <div class="rank-name">
-                        <div class="rank-image" style="background-image: url('https://i.imgur.com/4VrKjqB.jpg')"></div>
-                        Older
-                    </div>
-                    <div class="rank-price">قیمت: 80 هزار تومان</div>
-                </div>
-                <div class="rank-body">
-                    <ul class="rank-features">
-                        <li><i class="fas fa-check-circle"></i> دسترسی به /craft</li>
-                        <li><i class="fas fa-check-circle"></i> فروش 10 آیتم در حراجی</li>
-                        <li><i class="fas fa-check-circle"></i> کیت Older</li>
-                        <li><i class="fas fa-check-circle"></i> شغل مافیا به مدت 10 روز</li>
-                    </ul>
-                    <button class="rank-btn" data-rank="older">خرید رنک</button>
-                </div>
-            </div>
-            
-            <div class="rank-card">
-                <div class="discount-badge">جدید!</div>
-                <div class="rank-header">
-                    <div class="rank-name">
-                        <div class="rank-image" style="background-image: url('https://i.imgur.com/2QjR7Ld.jpg')"></div>
-                        Dc
-                    </div>
-                    <div class="rank-price">قیمت: 30 هزار تومان</div>
-                </div>
-                <div class="rank-body">
-                    <ul class="rank-features">
-                        <li><i class="fas fa-check-circle"></i> /ah sell [8]</li>
-                        <li><i class="fas fa-check-circle"></i> Claim 50k In Roleplay</li>
-                        <li><i class="fas fa-check-circle"></i> Number 4 Of Tab</li>
-                        <li><i class="fas fa-check-circle"></i> Kit Dc</li>
-                    </ul>
-                    <button class="rank-btn" data-rank="dc">خرید رنک</button>
-                </div>
-            </div>
-        </div>
-        
-        <div id="ranksAdminControls" class="admin-controls">
-            <h4><i class="fas fa-user-shield"></i> کنترل‌های ادمین</h4>
-            <div class="admin-btns">
-                <button class="admin-btn" id="editRankBtn"><i class="fas fa-edit"></i> ویرایش رنک‌ها</button>
-                <button class="admin-btn" id="setDiscountBtn"><i class="fas fa-tag"></i> تنظیم تخفیف</button>
-                <button class="admin-btn" id="addRankBtn"><i class="fas fa-plus"></i> افزودن رنک جدید</button>
-            </div>
+        <div id="ranksContent" class="ranks-grid">
+            <!-- رنک‌ها توسط جاوااسکریپت اضافه می‌شوند -->
         </div>
     </section>
     
@@ -1324,17 +1224,151 @@
         <div class="section-title">قوانین سرور</div>
         
         <div class="rules-container">
-            <div class="empty-state">
-                <i class="fas fa-book"></i>
-                <h3>قوانین سرور در حال آماده‌سازی است</h3>
-                <p>ادمین‌ها می‌توانند قوانین سرور را در این بخش تنظیم کنند</p>
-            </div>
-            
-            <div id="rulesAdminControls" class="admin-controls">
-                <h4><i class="fas fa-user-shield"></i> کنترل‌های ادمین</h4>
-                <div class="admin-btns">
-                    <button class="admin-btn" id="addRuleBtn"><i class="fas fa-plus"></i> افزودن قانون جدید</button>
-                    <button class="admin-btn" id="editRuleBtn"><i class="fas fa-edit"></i> ویرایش قوانین</button>
+            <div id="rulesContent">
+                <div class="rule-card">
+                    <div class="rule-card-title">
+                        <i class="fas fa-gavel"></i> قوانین عمومی سرور زد کرفت
+                    </div>
+                    <div class="rule-card-content">
+                        <p>باسلام. لطفا قبل از اتصال به سرور و سرگرم شدن این قوانین را مطالعه فرمایید تا مشکلی برای شما پیش نیاید!</p>
+                    </div>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-card-title">
+                        <i class="fas fa-comment-slash"></i> قانون فحاشی
+                    </div>
+                    <div class="rule-card-content">
+                        هیچکس در سرور حق فحاشی و ناسزا گویی را ندارد و در غیر این صورت 1 روز میوت به همراه دارد
+                    </div>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-card-title">
+                        <i class="fas fa-user-alt-slash"></i> قانون اسکین و نام کاربری نامتعارف
+                    </div>
+                    <div class="rule-card-content">
+                        اگر در سرور اسکین و نام کاربری خوشایندی نداشته باشید 2 روز بن از سرور میشوید
+                    </div>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-card-title">
+                        <i class="fas fa-redo-alt"></i> قانون فارم رداستونی
+                    </div>
+                    <div class="rule-card-content">
+                        هرگونه ساخت فارم رداستونی در بیس خود که باعث لگ شدن سرورشود منجر به بن 7 روزه شما از سرور میشود
+                    </div>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-card-title">
+                        <i class="fas fa-ban"></i> قانون چیت
+                    </div>
+                    <div class="rule-card-content">
+                        در صورت چیت زدن و رویت شدن چیت توسط شما منجر به برخورد شدید استف و بن 10 روزه شما از سرور میشود
+                    </div>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-card-title">
+                        <i class="fas fa-fire-alt"></i> قانون گریف
+                    </div>
+                    <div class="rule-card-content">
+                        گریف دادن به سرور منجر به بن آیپی دائمی در سرور خواهد شد
+                    </div>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-card-title">
+                        <i class="fas fa-skull"></i> قانون کیل فارم
+                    </div>
+                    <div class="rule-card-content">
+                        هرگونه کیل فارم در سرور که منجر به ازار و اذیت پلیر شود ادمین جیل به همراه دارد
+                        کیل فارم به معنی کشتن پیاپی یک پلیر یا چند پلیر است
+                    </div>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-card-title">
+                        <i class="fas fa-home"></i> قانون بیلد و ساخت و ساز بلا تکلیف
+                    </div>
+                    <div class="rule-card-content">
+                        اگر در سرور زمینی که خریداری کردید و در آن بیلدی انجام نشده توسط استف رویت شود منجر به پاک شدن زمین شما دقیقه ادمین جیل میشود
+                    </div>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-card-title">
+                        <i class="fas fa-comments"></i> قانون اسپم و ایجاد اختلال در چت
+                    </div>
+                    <div class="rule-card-content">
+                        اسپم کردن در سرور و ایجاد اختلال در چت بازی منجر به 2 روز میوت شما میشود
+                    </div>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-card-title">
+                        <i class="fas fa-microphone-alt-slash"></i> قانون ویس چت
+                    </div>
+                    <div class="rule-card-content">
+                        در سرور پلاگینی وجود دارد که شما میتوانید با دیدن اموزشی که ما در اختیار شما قرار میدهیم به ویس چت در سرور دسترسی داشته باشید و با اطرافیانتان صحبت کنید
+                        اما اگر در ویس چت کار هایی انجام بدید که منجر به ازار و اذیت دیگران شود مثلا میکروفون رو بکنید توی حلقتون منجر به 80 دقیقه ادمین جیل شما میشود
+                    </div>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-card-title">
+                        <i class="fas fa-hand-holding-usd"></i> قانون درخواست مکرر
+                    </div>
+                    <div class="rule-card-content">
+                        هرگونه درخواست مکرر برای دریافت رنک یا ایتم و پول در سرور منجر به 30 دقیقه ادمین جیل میشود
+                    </div>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-card-title">
+                        <i class="fas fa-crown"></i> قانون ابیوض از رنک و پرمیشن
+                    </div>
+                    <div class="rule-card-content">
+                        اگر از رنک و پرمیشن های رنک خودتان سو استفاده کنید منجر به گرفتن رنک شما به مدت 3 روز و 60 دقیقه ادمین جیل میشود
+                    </div>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-card-title">
+                        <i class="fas fa-money-check-alt"></i> قانون اسکم و کلاهبرداری
+                    </div>
+                    <div class="rule-card-content">
+                        اگر توسط کسی اسکم شدید و آن اسکم بالای 200 کی پول بود و هلپر یا استف در ان مکان حضور نداشت با فرستادن ریکورد در تیکت میتوانید فرد را به 70 دقیقه ادمین جیل مجازات کنید
+                    </div>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-card-title">
+                        <i class="fas fa-exclamation-circle"></i> قانون به وجود اوردن اختلال در روند آرپی (رول پلی)
+                    </div>
+                    <div class="rule-card-content">
+                        اگر شما در یک ارپی که کاملا مانند واقعیت در حال انجام است اختلال به وجود اورید و روند آرپی را به هم بریزید به 60 دقیقه ادمین جیل مجازات میشوید
+                    </div>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-card-title">
+                        <i class="fas fa-sign-out-alt"></i> قانون کامبت لاگین
+                    </div>
+                    <div class="rule-card-content">
+                        اگر شما در وسط تست گیری یا ارپی دیگری بودید و از سرور لفت بدید و بعد از 5 دقیقه به سرور برنگردید منجر به برخورد آرپی منیجر و 60 دقیقه ادمین جیل میشود
+                    </div>
+                </div>
+                
+                <div class="rule-card" style="background: rgba(67, 97, 238, 0.1);">
+                    <div class="rule-card-title">
+                        <i class="fas fa-star"></i> نکته پایانی
+                    </div>
+                    <div class="rule-card-content">
+                        <p>پلیر های عزیز خواهشا این موارد را رعایت کنید که بتوانیم تجربه بهتری از سرور زد کرفت داشته باشیم. باتشکر از شما</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1342,6 +1376,7 @@
     
     <section id="account" class="page">
         <div class="account-container">
+            <!-- فرم ورود -->
             <div class="form-container" id="loginForm">
                 <h2 class="form-title">ورود به حساب کاربری</h2>
                 <div class="form-group">
@@ -1365,6 +1400,53 @@
                 </div>
             </div>
             
+            <!-- فرم ثبت نام -->
+            <div class="form-container" id="signupForm" style="display: none;">
+                <h2 class="form-title">ایجاد حساب کاربری</h2>
+                <div class="form-group">
+                    <label for="signupEmail">ایمیل</label>
+                    <input type="email" id="signupEmail" class="form-control" placeholder="ایمیل خود را وارد کنید">
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupPassword">رمز عبور</label>
+                    <input type="password" id="signupPassword" class="form-control" placeholder="رمز عبور خود را وارد کنید">
+                </div>
+                
+                <div class="form-group">
+                    <label for="signupConfirmPassword">تکرار رمز عبور</label>
+                    <input type="password" id="signupConfirmPassword" class="form-control" placeholder="رمز عبور را تکرار کنید">
+                </div>
+                
+                <div class="form-footer">
+                    <button class="btn btn-primary" id="signupBtn">ثبت نام</button>
+                </div>
+                
+                <div class="form-footer" style="justify-content: center; margin-top: 1.5rem;">
+                    <span>حساب کاربری دارید؟ </span>
+                    <span class="form-switch" id="showLogin">ورود به حساب</span>
+                </div>
+            </div>
+            
+            <!-- فرم تأیید کد -->
+            <div class="form-container" id="verificationForm" style="display: none;">
+                <h2 class="form-title">تأیید ایمیل</h2>
+                <div class="form-group">
+                    <label for="verificationCode">کد تأیید ۶ رقمی</label>
+                    <input type="text" id="verificationCode" class="form-control" placeholder="کد ارسال شده به ایمیل خود را وارد کنید" maxlength="6">
+                </div>
+                
+                <div class="form-footer">
+                    <button class="btn btn-primary" id="verifyBtn">تأیید کد</button>
+                </div>
+                
+                <div class="form-footer" style="justify-content: center; margin-top: 1.5rem;">
+                    <span>کد را دریافت نکردید؟ </span>
+                    <span class="form-switch" id="resendCode">ارسال مجدد کد</span>
+                </div>
+            </div>
+            
+            <!-- پروفایل کاربر -->
             <div class="profile-card" id="profilePage" style="display: none;">
                 <div class="profile-header">
                     <div class="profile-avatar">
@@ -1384,25 +1466,24 @@
                         <span class="detail-value" id="lastLogin">هم اکنون</span>
                     </div>
                     <div class="detail-item">
-                        <span class="detail-label">نوع حساب:</span>
-                        <span class="detail-value" id="accountType">کاربر عادی</span>
+                        <span class="detail-label">وضعیت حساب:</span>
+                        <span class="detail-value" id="accountStatus">فعال</span>
                     </div>
                 </div>
                 
-                <button class="change-password-btn" id="changePasswordBtn">تغییر رمز عبور</button>
                 <button class="logout-btn" id="logoutBtn">خروج از حساب کاربری</button>
-                
-                <div id="accountAdminControls" class="admin-controls">
-                    <h4><i class="fas fa-user-shield"></i> کنترل‌های ادمین</h4>
-                    <div class="admin-btns">
-                        <button class="admin-btn" id="createUserBtn"><i class="fas fa-user-plus"></i> ایجاد کاربر جدید</button>
-                        <button class="admin-btn" id="manageUsersBtn"><i class="fas fa-users-cog"></i> مدیریت کاربران</button>
-                    </div>
-                </div>
+            </div>
+            
+            <!-- پیام خوش‌آمدگویی -->
+            <div class="register-message">
+                <h3>به خانواده زد کرفت بپیوندید!</h3>
+                <p>با ثبت نام در سرور زد کرفت، به دنیایی از ماجراجویی‌های بی‌پایان دست پیدا می‌کنید. یک کد تایید به ایمیل شما ارسال خواهد شد تا ورود شما به دنیای شگفت‌انگیز ماینکرفت را جشن بگیریم!</p>
+                <p>پس از ثبت نام، به جمع بازیکنان حرفه‌ای ما بپیوندید و تجربه‌ای منحصر به فرد از بازی نقش‌آفرینی را در سرور زد کرفت تجربه کنید.</p>
             </div>
         </div>
     </section>
     
+    <!-- مدال رنک برای جزئیات -->
     <div class="rank-modal" id="rankModal">
         <div class="rank-modal-content">
             <span class="close-modal" id="closeModal">&times;</span>
@@ -1431,14 +1512,25 @@
         <p class="copyright">© 2025 تمامی حقوق محفوظ است</p>
     </footer>
     
-    <audio autoplay loop id="bgMusic">
-        <source src="https://dl.sedatoseda.com/sound/Music-Minecraft%20(4).mp3" type="audio/mpeg">
-    </audio>
-    
     <script>
+        // مقداردهی اولیه EmailJS با کلید عمومی شما
+        emailjs.init("a1GEddr3nuMMKa-_j");
+        
+        // سیستم نوتیفیکیشن
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type} show`;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
         // اطلاعات رنک‌ها
         const rankDetails = {
             'z-plus': {
+                id: 'z-plus',
                 name: 'Z +',
                 price: '100 هزار تومان',
                 originalPrice: '200 هزار تومان',
@@ -1462,6 +1554,7 @@
                 ]
             },
             'z-fire': {
+                id: 'z-fire',
                 name: 'Z Fire',
                 price: '120 هزار تومان',
                 details: [
@@ -1479,6 +1572,7 @@
                 ]
             },
             'older': {
+                id: 'older',
                 name: 'Older',
                 price: '80 هزار تومان',
                 details: [
@@ -1493,6 +1587,7 @@
                 ]
             },
             'dc': {
+                id: 'dc',
                 name: 'Dc',
                 price: '30 هزار تومان',
                 details: [
@@ -1506,27 +1601,24 @@
             }
         };
 
-        // حساب‌های ادمین
-        const adminAccounts = [
+        // حساب‌های معتبر
+        const validAccounts = [
             { 
-                email: 'amir@zcraft.ir', 
-                password: 'ZCraft1582',
-                displayName: 'Amir',
-                isAdmin: true
-            },
-            { 
-                email: 'saamin@zcraft.ir', 
-                password: 'ZCraft1582',
-                displayName: 'Saamin',
-                isAdmin: true
-            },
-            { 
-                email: 'nqzme@zcraft.ir', 
-                password: 'ZCraft1582',
-                displayName: 'Nqzme',
-                isAdmin: true
+                email: 'zcraft2025@gmail.com', 
+                password: 'ZCRAFT1582',
+                displayName: 'کاربر ویژه',
+                joinDate: '1403/01/15'
             }
         ];
+
+        let users = [];
+        let currentUser = null;
+        let tempUser = null; // ذخیره اطلاعات کاربر موقت قبل از تأیید
+
+        // تابع بستن مدال
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
 
         // ناوبری صفحات
         document.querySelectorAll('.nav-link').forEach(link => {
@@ -1572,49 +1664,212 @@
             window.scrollTo(0, 0);
         });
 
-        // باز کردن مدال رنک
-        document.querySelectorAll('.rank-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const rankId = this.getAttribute('data-rank');
+        // نمایش رنک‌ها
+        function renderRanks() {
+            const ranksGrid = document.getElementById('ranksContent');
+            ranksGrid.innerHTML = '';
+            
+            Object.keys(rankDetails).forEach(rankId => {
                 const rank = rankDetails[rankId];
+                const rankCard = document.createElement('div');
+                rankCard.className = 'rank-card';
+                rankCard.setAttribute('data-rank', rankId);
                 
-                document.getElementById('modalRankName').textContent = rank.name;
-                
-                if (rank.originalPrice) {
-                    document.getElementById('modalRankPrice').innerHTML = 
-                        `قیمت: <span class="original-price">${rank.originalPrice}</span> <span class="discounted-price">${rank.price}</span>`;
-                } else {
-                    document.getElementById('modalRankPrice').textContent = `قیمت: ${rank.price}`;
+                let discountBadge = '';
+                if (rank.discount) {
+                    discountBadge = `<div class="discount-badge">${rank.discount}</div>`;
                 }
                 
-                const detailsList = document.getElementById('modalRankDetails');
-                detailsList.innerHTML = '';
-                
-                rank.details.forEach(detail => {
-                    const li = document.createElement('li');
-                    li.textContent = detail;
-                    detailsList.appendChild(li);
-                });
-                
-                document.getElementById('rankModal').style.display = 'flex';
+                rankCard.innerHTML = `
+                    ${discountBadge}
+                    <div class="rank-header">
+                        <div class="rank-name">
+                            <div class="rank-image" style="background-image: url('${rank.image || 'https://via.placeholder.com/50'}')"></div>
+                            ${rank.name}
+                        </div>
+                        <div class="rank-price">
+                            ${rank.originalPrice ? `<span class="original-price">${rank.originalPrice}</span>` : ''}
+                            <span class="${rank.originalPrice ? 'discounted-price' : ''}">${rank.price}</span>
+                        </div>
+                    </div>
+                    <div class="rank-body">
+                        <button class="rank-btn" data-rank="${rankId}">خرید رنک</button>
+                    </div>
+                `;
+                ranksGrid.appendChild(rankCard);
             });
-        });
-
-        // بستن مدال رنک
-        document.getElementById('closeModal').addEventListener('click', function() {
-            document.getElementById('rankModal').style.display = 'none';
-        });
-
-        // بستن مدال با کلیک خارج از آن
-        window.addEventListener('click', function(event) {
-            if (event.target === document.getElementById('rankModal')) {
-                document.getElementById('rankModal').style.display = 'none';
-            }
-        });
-
+            
+            // متصل کردن ایونت‌های رنک
+            document.querySelectorAll('.rank-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // جلوگیری از باز شدن مدال هنگام کلیک روی دکمه خرید
+                    if (e.target.closest('.rank-btn')) return;
+                    
+                    const rankId = this.getAttribute('data-rank');
+                    const rank = rankDetails[rankId];
+                    
+                    document.getElementById('modalRankName').textContent = rank.name;
+                    
+                    if (rank.originalPrice) {
+                        document.getElementById('modalRankPrice').innerHTML = 
+                            `قیمت: <span class="original-price">${rank.originalPrice}</span> <span class="discounted-price">${rank.price}</span>`;
+                    } else {
+                        document.getElementById('modalRankPrice').textContent = `قیمت: ${rank.price}`;
+                    }
+                    
+                    const detailsList = document.getElementById('modalRankDetails');
+                    detailsList.innerHTML = '';
+                    
+                    rank.details.forEach(detail => {
+                        const li = document.createElement('li');
+                        li.textContent = detail;
+                        detailsList.appendChild(li);
+                    });
+                    
+                    document.getElementById('rankModal').style.display = 'flex';
+                    
+                    // اضافه کردن ایونت خرید
+                    const buyButton = document.querySelector('#rankModal .btn-primary');
+                    // حذف event listener قبلی (اگر وجود دارد)
+                    buyButton.replaceWith(buyButton.cloneNode(true));
+                    document.querySelector('#rankModal .btn-primary').addEventListener('click', function() {
+                        showNotification('خرید رنک با موفقیت انجام شد! لطفاً منتظر تایید ادمین بمانید.', 'success');
+                        document.getElementById('rankModal').style.display = 'none';
+                    });
+                });
+            });
+            
+            // متصل کردن ایونت‌های دکمه خرید رنک
+            document.querySelectorAll('.rank-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation(); // جلوگیری از باز شدن مدال
+                    
+                    const rankId = this.getAttribute('data-rank');
+                    const rank = rankDetails[rankId];
+                    
+                    if (currentUser) {
+                        showNotification(`خرید رنک ${rank.name} با موفقیت ثبت شد!`, 'success');
+                    } else {
+                        showNotification('لطفاً ابتدا وارد حساب کاربری خود شوید', 'error');
+                        document.querySelector('[data-page="account"]').click();
+                    }
+                });
+            });
+        }
+        
         // سیستم حساب کاربری
         const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
         const profilePage = document.getElementById('profilePage');
+        const verificationForm = document.getElementById('verificationForm');
+        
+        // نمایش فرم ثبت نام
+        document.getElementById('showSignup').addEventListener('click', function() {
+            loginForm.style.display = 'none';
+            signupForm.style.display = 'block';
+            verificationForm.style.display = 'none';
+        });
+        
+        // نمایش فرم ورود
+        document.getElementById('showLogin').addEventListener('click', function() {
+            signupForm.style.display = 'none';
+            loginForm.style.display = 'block';
+            verificationForm.style.display = 'none';
+        });
+        
+        // ارسال کد تأیید
+        async function sendVerificationCode(email) {
+            try {
+                // تولید کد تصادفی ۶ رقمی
+                const verificationCode = Math.floor(100000 + Math.random() * 900000);
+                
+                // ارسال ایمیل با استفاده از EmailJS
+                await emailjs.send("ZCraft-Email-Service-158", "template_mk9qlpt", {
+                    to_email: email,
+                    verification_code: verificationCode,
+                    to_name: email.split('@')[0]
+                });
+                
+                showNotification(`کد تأیید به ایمیل ${email} ارسال شد`, 'info');
+                return verificationCode;
+            } catch (error) {
+                console.error('خطا در ارسال ایمیل:', error);
+                showNotification('خطا در ارسال کد تأیید. لطفاً دوباره امتحان کنید.', 'error');
+                return null;
+            }
+        }
+        
+        // ثبت نام
+        document.getElementById('signupBtn').addEventListener('click', async function() {
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            
+            if (email && password && confirmPassword) {
+                if (password !== confirmPassword) {
+                    showNotification('رمز عبور و تکرار آن یکسان نیستند', 'error');
+                    return;
+                }
+                
+                // بررسی تکراری نبودن ایمیل
+                const existingUser = users.find(user => user.email === email);
+                if (existingUser) {
+                    showNotification('این ایمیل قبلاً ثبت شده است', 'error');
+                    return;
+                }
+                
+                // ارسال کد تأیید
+                const verificationCode = await sendVerificationCode(email);
+                
+                if (verificationCode) {
+                    // ذخیره اطلاعات کاربر موقت
+                    tempUser = {
+                        email: email,
+                        password: password,
+                        verificationCode: verificationCode,
+                        displayName: email.split('@')[0],
+                        joinDate: new Date().toLocaleDateString('fa-IR')
+                    };
+                    
+                    // نمایش فرم تأیید کد
+                    signupForm.style.display = 'none';
+                    verificationForm.style.display = 'block';
+                }
+            } else {
+                showNotification('لطفاً تمام فیلدها را پر کنید', 'error');
+            }
+        });
+        
+        // تأیید کد
+        document.getElementById('verifyBtn').addEventListener('click', function() {
+            const enteredCode = document.getElementById('verificationCode').value;
+            
+            if (enteredCode && tempUser && enteredCode == tempUser.verificationCode) {
+                // حذف کد تأیید از اطلاعات کاربر
+                delete tempUser.verificationCode;
+                
+                // ذخیره کاربر جدید
+                users.push(tempUser);
+                localStorage.setItem('zcraft_users', JSON.stringify(users));
+                localStorage.setItem('user', JSON.stringify(tempUser));
+                
+                currentUser = tempUser;
+                showProfile(tempUser);
+                showNotification('حساب کاربری با موفقیت ایجاد شد', 'success');
+            } else {
+                showNotification('کد تأیید نامعتبر است', 'error');
+            }
+        });
+        
+        // ارسال مجدد کد
+        document.getElementById('resendCode').addEventListener('click', async function() {
+            if (tempUser && tempUser.email) {
+                const newCode = await sendVerificationCode(tempUser.email);
+                if (newCode) {
+                    tempUser.verificationCode = newCode;
+                }
+            }
+        });
         
         // ورود
         document.getElementById('loginBtn').addEventListener('click', function() {
@@ -1622,107 +1877,86 @@
             const password = document.getElementById('loginPassword').value;
             
             if (email && password) {
-                // بررسی حساب‌های ادمین
-                const adminUser = adminAccounts.find(user => 
+                // بررسی حساب‌های معتبر
+                const validUser = validAccounts.find(user => 
                     user.email === email && user.password === password);
                 
-                if (adminUser) {
-                    localStorage.setItem('user', JSON.stringify(adminUser));
-                    
-                    // نمایش صفحه پروفایل
-                    loginForm.style.display = 'none';
-                    profilePage.style.display = 'block';
-                    
-                    // به‌روزرسانی اطلاعات پروفایل
-                    document.getElementById('profileDisplayName').textContent = adminUser.displayName;
-                    document.getElementById('profileEmail').textContent = adminUser.email;
-                    document.getElementById('joinDate').textContent = new Date().toLocaleDateString('fa-IR');
-                    document.getElementById('lastLogin').textContent = 'هم اکنون';
-                    document.getElementById('accountType').textContent = adminUser.isAdmin ? 'ادمین' : 'کاربر عادی';
-                    
-                    // نمایش کنترل‌های ادمین
-                    if (adminUser.isAdmin) {
-                        document.getElementById('accountAdminControls').style.display = 'block';
-                        document.getElementById('blogAdminControls').style.display = 'block';
-                        document.getElementById('ranksAdminControls').style.display = 'block';
-                        document.getElementById('rulesAdminControls').style.display = 'block';
-                    }
+                // بررسی کاربران ثبت نام شده
+                const normalUser = users.find(user => 
+                    user.email === email && user.password === password);
+                
+                if (validUser) {
+                    currentUser = validUser;
+                    localStorage.setItem('user', JSON.stringify(validUser));
+                    showProfile(validUser);
+                    showNotification('ورود با موفقیت انجام شد', 'success');
+                } else if (normalUser) {
+                    currentUser = normalUser;
+                    localStorage.setItem('user', JSON.stringify(normalUser));
+                    showProfile(normalUser);
+                    showNotification('ورود با موفقیت انجام شد', 'success');
                 } else {
-                    alert('ایمیل یا رمز عبور اشتباه است');
+                    showNotification('ایمیل یا رمز عبور اشتباه است', 'error');
                 }
             } else {
-                alert('لطفاً ایمیل و رمز عبور را وارد کنید');
+                showNotification('لطفاً ایمیل و رمز عبور را وارد کنید', 'error');
             }
         });
         
+        // نمایش پروفایل کاربر
+        function showProfile(user) {
+            // نمایش صفحه پروفایل
+            loginForm.style.display = 'none';
+            signupForm.style.display = 'none';
+            verificationForm.style.display = 'none';
+            profilePage.style.display = 'block';
+            
+            // به‌روزرسانی اطلاعات پروفایل
+            document.getElementById('profileDisplayName').textContent = user.displayName;
+            document.getElementById('profileEmail').textContent = user.email;
+            document.getElementById('joinDate').textContent = user.joinDate;
+            document.getElementById('lastLogin').textContent = new Date().toLocaleDateString('fa-IR');
+        }
+        
         // خروج از حساب
         document.getElementById('logoutBtn').addEventListener('click', function() {
+            currentUser = null;
             localStorage.removeItem('user');
             profilePage.style.display = 'none';
             loginForm.style.display = 'block';
             
-            // مخفی کردن کنترل‌های ادمین
-            document.getElementById('accountAdminControls').style.display = 'none';
-            document.getElementById('blogAdminControls').style.display = 'none';
-            document.getElementById('ranksAdminControls').style.display = 'none';
-            document.getElementById('rulesAdminControls').style.display = 'none';
+            showNotification('شما با موفقیت خارج شدید', 'success');
         });
         
-        // بررسی وضعیت ورود کاربر
+        // تنظیم ایونت‌های بستن برای مدال‌ها
+        document.getElementById('closeModal').addEventListener('click', function() {
+            closeModal('rankModal');
+        });
+        
+        // بستن مدال با کلیک خارج از آن
+        window.addEventListener('click', function(event) {
+            if (event.target === document.getElementById('rankModal')) {
+                closeModal('rankModal');
+            }
+        });
+        
+        // بارگذاری اولیه محتوا
         window.addEventListener('DOMContentLoaded', function() {
             const userData = localStorage.getItem('user');
             
+            // بارگذاری داده‌ها از localStorage
+            const savedUsers = localStorage.getItem('zcraft_users');
+            if (savedUsers) users = JSON.parse(savedUsers);
+            
             if (userData) {
                 const user = JSON.parse(userData);
-                
-                // به‌روزرسانی اطلاعات پروفایل
-                document.getElementById('profileDisplayName').textContent = user.displayName;
-                document.getElementById('profileEmail').textContent = user.email;
-                document.getElementById('joinDate').textContent = new Date().toLocaleDateString('fa-IR');
-                document.getElementById('lastLogin').textContent = 'هم اکنون';
-                document.getElementById('accountType').textContent = user.isAdmin ? 'ادمین' : 'کاربر عادی';
-                
-                // نمایش صفحه پروفایل
-                loginForm.style.display = 'none';
-                profilePage.style.display = 'block';
-                
-                // نمایش کنترل‌های ادمین
-                if (user.isAdmin) {
-                    document.getElementById('accountAdminControls').style.display = 'block';
-                    document.getElementById('blogAdminControls').style.display = 'block';
-                    document.getElementById('ranksAdminControls').style.display = 'block';
-                    document.getElementById('rulesAdminControls').style.display = 'block';
-                }
+                currentUser = user;
+                showProfile(user);
             }
-        });
-        
-        // ایجاد کاربر جدید توسط ادمین
-        document.getElementById('createUserBtn').addEventListener('click', function() {
-            const email = prompt('ایمیل کاربر جدید را وارد کنید:');
-            const password = prompt('رمز عبور کاربر جدید را وارد کنید:');
-            const displayName = prompt('نام نمایشی کاربر جدید را وارد کنید:');
             
-            if (email && password && displayName) {
-                const newUser = {
-                    email: email,
-                    password: password,
-                    displayName: displayName,
-                    isAdmin: false
-                };
-                
-                // ذخیره کاربر در localStorage
-                localStorage.setItem('user_' + email, JSON.stringify(newUser));
-                alert('حساب کاربری جدید با موفقیت ایجاد شد!');
-            } else {
-                alert('لطفاً تمامی فیلدها را پر کنید');
-            }
-        });
-        
-        // پخش موزیک پس‌زمینه
-        document.addEventListener('DOMContentLoaded', function() {
-            const bgMusic = document.getElementById('bgMusic');
-            bgMusic.volume = 0.3;
+            // بارگذاری محتوا
+            renderRanks();
         });
     </script>
 </body>
-    </html>
+            </html>
