@@ -84,7 +84,7 @@
         }
         
         .logo i {
-            animation: rotate 10s linear infinite;
+            /* حذف انیمیشن چرخش برای لوگو */
         }
         
         .hero-btns .btn {
@@ -1708,10 +1708,9 @@
     
     <footer class="footer">
         <div class="social-links">
-            <a href="#" class="social-icon"><i class="fab fa-discord"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+            <a href="https://discord.gg/J8nQcpS4rP" class="social-icon"><i class="fab fa-discord"></i></a>
+            <a href="https://t.me/ZCraft1" class="social-icon"><i class="fab fa-telegram"></i></a>
+            <a href="https://instagram.com/z_craaft" class="social-icon"><i class="fab fa-instagram"></i></a>
         </div>
         <p>سرور ماینکرفت زد کرفت | ZCraft Minecraft Server</p>
         <p class="copyright">© 2025 تمامی حقوق محفوظ است</p>
@@ -1939,7 +1938,12 @@
                     // حذف event listener قبلی (اگر وجود دارد)
                     buyButton.replaceWith(buyButton.cloneNode(true));
                     document.querySelector('#rankModal .btn-primary').addEventListener('click', function() {
-                        showNotification('خرید رنک با موفقیت انجام شد! لطفاً منتظر تایید ادمین بمانید.', 'success');
+                        showNotification('به دلیل دردسترس نبودن درگاه پرداخت جهت خرید رنک به سرور دیسکورد زد کرفت مراجعه نمایید و تیکت Buy Rank باز کنید و رنک مورد نظر خود را به استف ها بگویید تا شماره راهنمایی کنند.', 'info');
+                        
+                        setTimeout(() => {
+                            window.open('https://discord.gg/J8nQcpS4rP', '_blank');
+                        }, 5000);
+                        
                         document.getElementById('rankModal').style.display = 'none';
                     });
                 });
@@ -1954,7 +1958,11 @@
                     const rank = rankDetails[rankId];
                     
                     if (currentUser) {
-                        showNotification(`خرید رنک ${rank.name} با موفقیت ثبت شد!`, 'success');
+                        showNotification('به دلیل دردسترس نبودن درگاه پرداخت جهت خرید رنک به سرور دیسکورد زد کرفت مراجعه نمایید و تیکت Buy Rank باز کنید و رنک مورد نظر خود را به استف ها بگویید تا شماره راهنمایی کنند.', 'info');
+                        
+                        setTimeout(() => {
+                            window.open('https://discord.gg/J8nQcpS4rP', '_blank');
+                        }, 5000);
                     } else {
                         showNotification('لطفاً ابتدا وارد حساب کاربری خود شوید', 'error');
                         document.querySelector('[data-page="account"]').click();
@@ -2165,4 +2173,4 @@
         });
     </script>
 </body>
-  </html>
+    </html>
